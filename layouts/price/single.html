@@ -18,12 +18,12 @@
         <li class="price-cards__item price-card">
           <div class="price-card__header">
             <div class="price-card__name">{{ .name }}</div>
-            <div>(bis {{ .square }} m²)</div>
+            <div>{{ .descr }}</div>
           </div>
-          <div class="price-card__line">{{ .fromP }}–{{ .toP }} {{$.Params.panorams }}</div>
-          <div class="price-card__line">bis {{ .POI }} {{ $.Params.POI_img }}</div>
-          <div class="price-card__line">{{ $.Params.line4 }}</div>
-          <div class="price-card__line">{{ $.Params.line5 }}</div>
+          <div class="price-card__line">{{ .fromP }}–{{ .toP }} {{$.Params.pages }}</div>
+          <div class="price-card__line">{{ $.Params.contactForm }} {{ .cForm }}</div>
+          <div class="price-card__line">{{ $.Params.mobileVersion }} {{ .mVersion }}</div>
+          <div class="price-card__line">{{ $.Params.pageSpeed }} {{ .pageSpeed }}</div>
           <div class="price-card__price">€ {{ .price }},—</div>
           <div class="price-card__cta">
             {{ with .cta }}
@@ -37,8 +37,8 @@
     </ul>
 
     <div class="price-list__addon">
-      <h3>{{ .Params.addon_header }}</h3>
-      <p>{{ .Params.add_on_notes }}</p>
+      <h3>{{ .Params.addon_header | markdownify }}</h3>
+      <p>{{ .Params.add_on_notes | markdownify }}</p>
     </div>
   </div>
 </section>
