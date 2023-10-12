@@ -1,0 +1,20 @@
+{{ $panoSrc := default (.Get 0) (.Get "src") }}
+{{ $panoId := default (lower $panoSrc | replaceRE "[^a-z0-9]" "") (.Get "id") }}
+
+<div class="pano360">
+  <div id="{{ $panoId }}" class="pano360__pano"></div>
+  {{ with .Get "caption" }}<p class="pano360__caption">{{ . }}</p>{{ end }}
+  {{ with .Get "extLink" -}}
+  <a class="pano360__ext-link" href="{{ . }}" target="_blank" rel="noopener">Link to external site{{ . }}</a>
+  {{ end -}}
+</div>
+
+<script>
+  pannellum.viewer('{{ $panoId }}', {
+      "type": "equirectangular",
+      "panorama": "{{ $panoSrc }}",
+      {{ with .Get "yaw" }}"yaw": {{ . }},{{ end }}
+      {{ with .Get "autoLoad" }}"autoLoad": true,{{ end }}
+      {{ with .Get "author" }}"author": {{ . }},{{ end }}
+  });
+</script>

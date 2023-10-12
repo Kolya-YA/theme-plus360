@@ -1,0 +1,62 @@
+{{ $tourSrc := .Get "nameTemplate" -}}
+{{ $tourId := default (lower $tourSrc | replaceRE "[^a-z0-9]" "") (.Get "id") -}}
+{{ $panosQty := .Get "panosQty" -}}
+{{ $autoload := default true (.Get "autoLoad") }}
+{{ $title := .Get "title" -}}
+{{ $author := default "plus360" (.Get "author") -}}
+{{ $yaw := .Get "yaw" -}}
+{{ $pitch := .Get "pitch" -}}
+{{ $hotSpots := .Get "hotSpots" -}}
+
+<div class="pano360">
+  <div id="{{ $tourId }}" class="pano360__pano"></div>
+  {{ with .Get "caption" }}<p class="pano360__caption">{{ . }}</p>{{ end -}}
+  
+  {{ with .Get "extLink" }}<p>
+    <a class="pano360__ext-link" href="{{ . }}" target="_blank" rel="noopener">Link to view on external site</a>
+  </p>{{ end }}
+</div>
+
+<script>
+  const title = {{ $title }}
+  const author = {{ $author }}
+  const autoLoad = ({{ $autoload }} === true)
+  const panosName = Array({{ $panosQty }}).fill({{ $tourSrc }}).map((x, i) => x + `${i + 1}`.padStart(2, '0'))
+  const yaw = ({{ $yaw }}).split(' ')
+  const pitch = ({{ $pitch }}).split(' ')
+  const hotSpots = ({{ $hotSpots }}).split(",").map(hs => hs.trim().split(' '))
+  console.log(hotSpots)
+  Promise.all(
+    panosName.map(name =>
+      fetch(`/multires/${name}/config.json`)
+        .then(resp => resp.json())
+    )
+  ).then(panosConfig => {
+      panosConfig.forEach((c, i) => {
+        c.title = `${title} (${i + 1})`
+        c.multiRes.basePath = `/multires/${panosName[i]}`
+        c.yaw = +yaw[i]
+        c.pitch = +pitch[i]
+        const curHotSpots = hotSpots.filter(hs => +hs[0] === i)
+        if (hotSpots) c.hotSpots =  curHotSpots.map(hs => ({
+          'type,': 'scene',
+          'sceneId': panosName[+hs[1]],
+          'yaw': hs[2],
+          'pitch': hs[3],
+        }))
+      })
+      panosConfig[0].autoload = true
+      const scenes = panosConfig.reduce((obj, pCnf, i) => ({ ...obj, [panosName[i]]:  pCnf }), {})
+      console.log('test', scenes )
+      pannellum.viewer('{{ $tourId }}', {
+        "default": {
+          // "hotSpotDebug": true,
+          "firstScene": panosName[0],
+          "sceneFadeDuration": 1000,
+          autoLoad,
+          author,
+        },
+        scenes
+      })
+  })
+  </script>

@@ -1,0 +1,38 @@
+.faq-list {
+  max-width: 80ch;
+  
+  .faq-list__header {
+    display: flex;
+    gap: 2em;
+  }
+
+  .faq-list__list {
+    padding: 0;
+    list-style: none;
+  }
+
+  .faq-item {
+
+    &:not(:last-child) {
+      margin-bottom: 1.5em;
+    }
+
+    .faq-item__details {
+      border: 3px solid var(--cards-color);
+      border-radius: var(--card-border-radius);
+      overflow: hidden;
+      background-color: var(--illuminating);
+    }
+    
+    .faq-item__question {
+      padding: var(--block-padding);
+      background-color: var(--cards-color);
+    }
+    
+    
+    .faq-item__answer {
+      margin: 0;
+      padding: var(--block-padding);
+    }
+  }
+}

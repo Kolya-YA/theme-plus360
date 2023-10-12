@@ -1,0 +1,24 @@
+<article class="page-card">  
+  <h4  class="page-card__header">
+    <a  class="page-card__link" href="{{ .RelPermalink }}">{{ .Name }}</a>
+  </h4>
+  {{ with .Resources.ByType "image"}}
+  <div class="page-card__images">
+    {{ range $img := shuffle . }}
+    {{ $imgwebp := $img.Resize "x180 webp" }}
+    {{ $imgjpg := $img.Resize "x180" }}
+    <picture>
+      <source type="image/webp"
+        srcset="{{ $imgwebp.RelPermalink }}">
+      <img
+        src="{{ $imgjpg.RelPermalink }}"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        width="{{ $imgjpg.Width }}"
+        height="{{ $imgjpg.Height }}">
+    </picture>
+    {{ end }}
+    </div>
+  {{ end }}  
+</article>

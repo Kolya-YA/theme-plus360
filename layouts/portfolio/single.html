@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section id="main">
+  {{ if not .Parent.IsHome }}
+  <div class="back-link">
+    <a href="{{ .Parent.RelPermalink  }}"><— {{ .Parent.Title }}</a>
+  </div>
+  {{ end }}
+  <article id="content">
+    <h1 id="title">{{ .Title }}</h1>
+    {{ .Content }}
+    
+    {{ with .PrevInSection }}<div><a class="previous" href="{{.Permalink}}">Prev — {{.Title}}</a></div>{{ end }}
+    {{ with .NextInSection }}<div><a class="next" href="{{.Permalink}}">Next — {{.Title}}</a></div>{{ end }}
+  </article>
+</section>
+
+<aside id="meta">
+  {{with .CurrentSection.Pages }}
+  <section>
+    <ul class="">
+      {{ range . }}
+      {{ if ne . $ }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+      
+  {{ with .Params.tags }}
+  <section class="page-tags">
+    <ul class="page-tags__list" id="tags">
+      {{ range . }}
+      <li class="page-tags_item"><a href="{{ "tags" | absURL }}{{ . | urlize }}">{{ . }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
+  <section class="page-date">
+    <time id="date" daytime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2.01.2006" }}</time>
+  </section>
+</aside>
+{{ end }}

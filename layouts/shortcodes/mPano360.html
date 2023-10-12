@@ -1,0 +1,24 @@
+{{ $panoSrc := default (.Get 0) (.Get "dir") -}}
+{{ $panoId := default (lower $panoSrc | replaceRE "[^a-z0-9]" "") (.Get "id") -}}
+{{ $previewImg := .Page.Resources.GetMatch (printf "*%s*" $panoSrc) -}}
+{{ $clickToLoadBtn := $.Site.Params.clickToLoadBtn -}}
+
+<div class="pano360">
+  <div  id="{{ $panoId }}"
+        class="pano360__pano"
+        data-pano-src={{ $panoSrc }}
+        data-pano-id={{ $panoId }}
+        {{ with .Get "autoLoad" }}data-auto-load="true"{{ end }}
+        {{ with .Get "yaw" }}data-yaw="{{ . }}"{{ end }}
+        {{ with .Get "pitch" }}data-pitch="{{ . }}"{{ end }}
+        {{ with .Get "title" }}data-title="{{ . }}"{{ end }}
+        {{ with .Get "author" }}data-author="{{ . }}"{{ end }}
+        {{ with $previewImg }}data-preview="{{ .RelPermalink }}"{{ end }}
+        {{ with $clickToLoadBtn }}data-load-button-label="{{ . }}"{{ end }}  
+  ></div>
+  {{ with .Get "caption" }}<p class="pano360__caption">{{ . }}</p>{{ end -}}
+  
+  {{ with .Get "extLink" }}<p>
+    <a class="pano360__ext-link" href="{{ . }}" target="_blank" rel="noopener">Link to view on external site</a>
+  </p>{{ end }}
+</div>

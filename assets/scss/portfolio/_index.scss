@@ -1,0 +1,27 @@
+.portfolio {
+
+  .categories {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--block-gap);
+
+    .categories__item {
+      background-color: var(--cards-color);
+      display: flex;
+      align-items: center;
+      justify-content:space-around;
+      border-radius: 3px;
+    }
+
+    .categories__link {
+      text-align: center;
+      color: var(--text-main-color);
+      padding: .8em .5em;
+      text-decoration: none;
+      text-transform: uppercase;
+      // background-color: #ddc;
+    }
+  }
+}

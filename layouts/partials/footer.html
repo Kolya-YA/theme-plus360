@@ -1,0 +1,27 @@
+<footer class="footer">
+  <div class="width-wrapper">
+    <div class="footer__top">
+      <a class="footer__logo" href="{{ .Site.BaseURL }}">
+        <span>{{ .Site.Params.titleWord }}</span>{{ .Site.Params.titleDigit }}
+      </a>
+      <a href="{{ .Site.Params.instagramLink }}" target="_blank">Instagram</a>
+      <a href="{{ .Site.Params.facebookLink }}" target="_blank">Facebook</a>
+      <a href="mailto:{{ .Site.Params.email }}?subject=Question from site plus360" target="_blank">{{ .Site.Params.email }}</a>
+      <a href="tel:{{ .Site.Params.phoneLink }}">{{ .Site.Params.phone }}</a>
+    </div>
+    <ul class="footer__menu footer-menu">
+      {{- $currentPage := . -}}
+      {{ range .Site.Menus.footer }}
+      <li>
+        <a {{ if $currentPage.IsMenuCurrent "footer" . -}}
+            class="footer-menu__link footer-menu__link--current"
+            {{- else -}}
+            class="footer-menu__link" href="{{ .URL }}"
+            {{- end -}}
+            >{{ .Name -}}
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
+</footer>

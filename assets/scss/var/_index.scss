@@ -1,0 +1,41 @@
+$header-top-dskt-width: 500px;
+$header-menu-dskt-width: 750px;
+$footer-dskt-width: 720px;
+
+$service-item-dskt-width: 650px;
+
+
+:root {
+  --wraper-max-width: 1240px;
+  --block-gap: 1rem;
+  --block-padding: 1rem;
+  --card-border-radius: 4px;
+  
+  --header-font-family: 'Open Sans', sans-serif;
+  --common-font-family: 'Open Sans', sans-serif;
+  --footer-font-family: -apple-system, 'Open Sans', sans-serif;
+  --common_font-size: 16px;
+
+  --line-color: #c8c8c8;
+  --body-bg-color: #fff;
+  --block-bg-color: #fff;
+  --text-main-color: #3d3939;
+  --text-main-color-50a: #3d393980;
+  --header-bg-color: hsl(0, 0%, 92%);
+  --footer-bg-color: hsl(0, 0%, 20%);
+  --footer-text-color: hsl(36, 100%, 90%);
+  --link-hover-color: #61afb5;
+  --cards-color: #dde;
+  --button-color: #9d5dd1;
+  --button-text: #fff;
+  --paper-color: #fdf3e5;
+  --warning-color: #ff4747;
+  
+  --capture-text: #fff;
+  --capture-bgc: hsla(0, 0%, 0%, 60%);
+
+  --ultimate-gray: hsl(210, 2%, 58%);
+  --illuminating: hsl(52, 89%, 63%);
+  --illuminating-light: hsl(52, 89%, 78%);
+
+}

@@ -1,0 +1,28 @@
+.pano360 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5em;
+  
+  .pano360__pano {
+    width: 100%;
+    max-width: 600px;
+    max-width: calc(var(--wraper-max-width) / 2);
+    aspect-ratio: 16 / 9;
+  }
+  
+  @supports not (aspect-ratio: 16 / 9) {
+    .pano360__pano::before {
+      float: left;
+      padding-top: calc(100% / (16 / 9)); 
+      content: '';
+    }
+  
+    .pano360__pano:after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{{ define "main" }}
+  <main class="portfolio">
+    {{ if not .Parent.IsHome }}
+    <div class="back-link">
+      <a href="{{ .Parent.RelPermalink  }}"><— {{ .Parent.Title }}</a>
+    </div>
+    {{ end }}
+
+    <h1 class="portfolio__title">{{ .Title }}</h1>
+    {{ with .Params.subtitle }}
+    <h2 class="portfolio__subtitle">{{ . }}</h2>
+    {{ end }}
+
+    {{ .Content }}
+    
+    <ul class="portfolio__categores categories">
+      {{/*  {{if gt (len .Pages) 1 }}
+      <li class="categories__item">
+        <a class="categories__link" href="#">Alle</a>
+      </li>
+      {{ end }}  */}}
+      {{ range .Pages }}
+      <li class="categories__item">
+        <a class="categories__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+    
+    {{ with .Sections }}
+      {{ range . }}
+        <h3>{{ .Name }}</h3>
+        <ul class="pages-list">
+          {{ range .Pages }}
+            <li class="pages-list__item">
+            {{ if .Params.pano360 }}
+              {{ partial "pano360-card" . }}
+            {{ else }}
+              {{ partial "page-card" . }}
+            {{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    {{ else }}
+      <ul class="pages-list">
+        {{ range .Pages }}
+          <li class="pages-list__item">
+          {{ if .Params.pano360 }}
+            {{ partial "pano360-card" . }}
+          {{ else }}
+            {{ partial "page-card" . }}
+          {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+    </ul>
+  </main>
+{{ end }}

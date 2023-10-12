@@ -1,0 +1,43 @@
+{{ define "main" }}
+<section id="main">
+
+  <h1 id="title">{{ .Title }}</h1>
+
+  <div>
+    <article id="content">
+        {{ .Content }}
+    </article>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-list__header">
+      {{ with .Params.subtitle }}
+        <h2>{{ . }}</h2>
+      {{ end }}
+      {{/*  <button>Alles zusammenklappen</button>  */}}
+    </div>
+
+    <ul class="faq-list__list">
+      {{ range sort .Site.Data.faq "order" }}        
+        <li class="faq-item">
+            <details class="faq-item__details">
+              <summary class="faq-item__question">{{ .q | markdownify }}</summary>
+              <p class="faq-item__answer">{{ .a | markdownify }}</p>
+            </details>
+        </li>
+      {{ end }}
+    </ul>
+
+    <div class="faq-list__addon">
+      <h3>{{ .Params.addon_header }}</h3>
+      <p>{{ .Params.add_on_notes }}</p>
+    </div>
+  </div>
+
+  <aside id="meta">
+    <hr>
+    <p>last edit {{ .Date.Format "2.01.2006" }}</p>
+  </aside>
+</section>
+
+{{ end }}

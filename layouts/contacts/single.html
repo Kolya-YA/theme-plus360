@@ -1,0 +1,76 @@
+{{ define "main" }}
+<section id="main">
+  <h1 id="title">{{ .Title }}</h1>
+
+  <div>
+    <article id="content">
+        {{ .Content }}
+    </article>
+  </div>
+
+  <div class="contact-form">
+    <div class="contact-form__header">
+      {{ with .Params.subtitle -}}
+        <h2>{{ . }}</h2>
+      {{- end }}
+    </div>
+
+    <form action="" class="contact-form__form cform">
+      <div class="cform__line">
+        <label for="" class="cform__label">Name<span>*</span>
+          <input type="text" name="" id="" class="cform__input">
+        </label>
+
+        <label for="" class="cform__label">Unternehmensname
+          <input type="text" name="" id="" class="cform__input">
+        </label>
+      </div>
+
+      <div class="cform__line">
+        <label for="" class="cform__label">Email<span>*</span>
+          <input type="email" name="" id="" class="cform__input">
+        </label>
+
+        <label for="" class="cform__label">Telefonnummer
+          <input type="tel" name="" id="" class="cform__input">
+        </label>
+      </div>
+
+      <div class="cform__line">
+        <label for="" class="cform__label">Nachricht<span>*</span>
+          <textarea name="" id="" cols="30" rows="10" class="cform__input"></textarea>
+        </label>
+      </div>
+
+      <div class="cform__line">
+        <label class="cform__label">
+          <input type="checkbox" name="" class="cform__chk-input">
+          Ich stimme der erste Option zu.
+        </label>
+      </div>
+
+      <div class="cform__line">
+        <label class="cform__label">
+          <input type="checkbox" name="" class="cform__chk-input">          
+          Ich stimme der zweite Option zu.
+        </label>
+      </div>
+
+      <div class="cform__line">
+        <button class="cform__submit" disabled>Senden</button>
+      </div>
+    </form>
+
+    <div class="contact-form__addon">
+      <h3>{{ .Params.addon_header }}</h3>
+      <p>{{ .Params.add_on_notes }}</p>
+    </div>
+  </div>
+
+  <aside id="meta">
+    <hr>
+    <p>last edit {{ .Date.Format "2.01.2006" }}</p>
+  </aside>
+</section>
+
+{{ end }}

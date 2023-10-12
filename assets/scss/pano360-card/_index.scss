@@ -1,0 +1,40 @@
+.pano360-card {
+  position: relative;
+  min-height: 100%;
+  min-width: 100%;
+  overflow: hidden;
+  background-color: var(--illuminating-light);
+  border-radius: 3px;
+
+  .pano360-card__link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-decoration: none;
+    
+    .pano360-card__header {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: inline-block;
+      margin: 0;
+      padding: .4em .5em;
+      background-color: var(--capture-bgc);
+      border-top-right-radius: 3px;
+      color: var(--capture-text);
+      font-weight: 100;
+    }
+  }
+
+  .pano360-card__image {
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 321px;
+      height: auto;
+    }
+  }
+}

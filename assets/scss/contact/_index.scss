@@ -1,0 +1,48 @@
+.cform {
+
+  background-color: var(--line-color);
+  padding: 1.5em;
+  border-radius: 5px;
+
+  .cform__line {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2em;
+  }
+  
+  .cform__label {
+    display: block;
+    margin-bottom: 1.2em;
+    flex: 1;
+    min-width: 30ch;
+    color: var(--text-main-color);
+
+    span {
+      color: var( --warning-color);
+    }
+  }
+  
+  .cform__input {
+    display: block;
+    width: 100%;
+    margin-top: 0.5em;
+    padding: .7em;
+    border: none;
+    border-radius: 3px;
+    font-size: inherit;
+    color: var(--text-main-color);
+  }
+
+  .cform__submit {
+    min-width: 24ch;
+    margin: 0 auto;
+    padding: 0.5em;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-color);
+  color: var(--button-text);
+  }
+}

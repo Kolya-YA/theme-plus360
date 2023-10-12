@@ -1,0 +1,20 @@
+{{ $title := print .Title " | " .Site.Title  -}}
+{{ if .IsHome }}{{ $title = .Site.Title }}{{ end -}}
+
+{{ $description := "" -}}
+{{ with .Description }}
+  {{ $description = . -}}
+{{ else -}}
+  {{ with $.Site.Params.description -}}{{ $description = . -}}{{ end -}}
+{{ end -}}
+
+{{- $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $description }}" />
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+</head>

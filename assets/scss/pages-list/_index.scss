@@ -1,0 +1,12 @@
+.pages-list {
+  display: grid;
+  gap: var(--block-gap);
+  grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
+  grid-template-rows: minmax(80px, auto);
+  padding: 0;
+  list-style: none;
+
+  .pages-list__item {
+    display: block;
+  }
+}

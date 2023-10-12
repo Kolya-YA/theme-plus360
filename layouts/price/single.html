@@ -1,0 +1,45 @@
+{{ define "main" }}
+<section id="main">
+  <h1 id="title">{{ .Title }}</h1>
+  
+  <aside id="meta">
+    <p>last edit {{ .Date.Format "2.01.2006" }}</p>
+  </aside>
+
+  <div>
+    <article id="content">
+        {{ .Content }}
+    </article>
+  </div>
+
+  <div class="price-list">
+    <ul class="price-list__cards">
+      {{ range sort .Site.Data.price "order" }}        
+        <li class="price-cards__item price-card">
+          <div class="price-card__header">
+            <div class="price-card__name">{{ .name }}</div>
+            <div>(bis {{ .square }} m²)</div>
+          </div>
+          <div class="price-card__line">{{ .fromP }}–{{ .toP }} {{$.Params.panorams }}</div>
+          <div class="price-card__line">bis {{ .POI }} {{ $.Params.POI_img }}</div>
+          <div class="price-card__line">{{ $.Params.line4 }}</div>
+          <div class="price-card__line">{{ $.Params.line5 }}</div>
+          <div class="price-card__price">€ {{ .price }},—</div>
+          <div class="price-card__cta">
+            {{ with .cta }}
+              {{ . }}
+            {{ else }}
+              <a href={{ "contact" | relURL }}>{{ $.Params.cta }}</a>
+            {{ end }}
+          </div>
+        </li>
+      {{ end }}
+    </ul>
+
+    <div class="price-list__addon">
+      <h3>{{ .Params.addon_header }}</h3>
+      <p>{{ .Params.add_on_notes }}</p>
+    </div>
+  </div>
+</section>
+{{ end }}
