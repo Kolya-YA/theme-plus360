@@ -16,7 +16,7 @@
 Inside the folder of your Hugo site run:
 
 ```ch
-git submodule add ... themes/plu360
+git submodule add ... themes/theme-plus360
 ```
 
 For more information read the official [guide](//gohugo.io/overview/installing/) of Hugo.
