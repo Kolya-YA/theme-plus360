@@ -1,5 +1,5 @@
 .scroller {
-    max-width: Min(calc(100vw - (var(--block-gap) * 2)), 60ch);
+    max-width: Min(calc(100vw - (var(--block-gap) * 2)), 68ch);
     margin-block: var(--block-gap);
     margin-inline: auto;
     color: var(--footer-text-color);
@@ -26,7 +26,7 @@
     }
     
     &[data-direction="left"] {
-        --_animation-direction: forvards;
+        --_animation-direction: forwards;
     }
 
     &[data-speed="fast"] {
@@ -34,7 +34,7 @@
     }
 
     &[data-speed="slow"] {
-        --_animation-duration: 60s;
+        --_animation-duration: 80s;
     }
 
     &[data-animated="true"] {        

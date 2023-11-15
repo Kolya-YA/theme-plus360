@@ -2,18 +2,14 @@
 <section id="main">
   <h1 id="title">{{ .Title }}</h1>
 
-  <div>
-    <article id="content">
-        {{ .Content }}
-    </article>
-  </div>
+  <article id="content">
+    {{ .Content }}
+  </article>
 
   <div class="contact-form">
-    <div class="contact-form__header">
-      {{ with .Params.subtitle -}}
-        <h2>{{ . }}</h2>
-      {{- end }}
-    </div>
+    {{ with .Params.subtitle -}}
+      <h2 class="contact-form__header">{{ . }}</h2>
+    {{- end }}
 
     <form action="" class="contact-form__form cform">
       <div class="cform__line">
@@ -66,11 +62,6 @@
       <p>{{ .Params.add_on_notes }}</p>
     </div>
   </div>
-
-  <aside id="meta">
-    <hr>
-    <p>last edit {{ .Date.Format "2.01.2006" }}</p>
-  </aside>
 </section>
 
 {{ end }}

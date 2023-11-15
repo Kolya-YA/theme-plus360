@@ -2,13 +2,13 @@
 
 <h1>{{ .Title }}</h1>
 
-{{ with .Params.subtitle }}<h2 class="portfolio__subtitle">{{ . }}</h2>{{ end }}
+{{ with .Params.subtitle }}
+  <h2 class="portfolio__subtitle">{{ . }}</h2>
+{{ end }}
 
 {{ .Content }}
 
 <aside id="meta">
-  <hr>
-  <p>last edit {{ .Date.Format "2.01.2006" }}</p>
 </aside>
 
 <section class="service-items">

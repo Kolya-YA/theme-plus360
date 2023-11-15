@@ -1,0 +1,15 @@
+{{ $data := split (.Get "data") "," -}}
+{{ if (index  $data 0) -}}
+
+<div 
+    class="scroller"
+    {{ with .Get "speed" }}data-speed="{{ . }}"{{ end }}
+    {{ with .Get "direction" }}data-direction="{{ . }}"{{ end }}
+>
+    <ul class="scroller__list">
+        {{- range $data }}
+        <li>{{ trim . " " }}</li>
+        {{- end }}
+    </ul>
+</div>
+{{- end }}
