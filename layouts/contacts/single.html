@@ -11,49 +11,51 @@
       <h2 class="contact-form__header">{{ . }}</h2>
     {{- end }}
 
-    <form action="" class="contact-form__form cform">
+    <form id="cform" class="contact-form__form cform">
       <div class="cform__line">
-        <label for="" class="cform__label">Name<span>*</span>
-          <input type="text" name="" id="" class="cform__input">
+        <label class="cform__label">Name<span>*</span>
+          <input type="text" name="name" class="cform__input" value="Test Name">
         </label>
 
-        <label for="" class="cform__label">Unternehmensname
-          <input type="text" name="" id="" class="cform__input">
+        <label class="cform__label">Unternehmensname
+          <input type="text" name="company-name" class="cform__input">
         </label>
       </div>
 
       <div class="cform__line">
-        <label for="" class="cform__label">Email<span>*</span>
-          <input type="email" name="" id="" class="cform__input">
+        <label class="cform__label">Email<span>*</span>
+          <input type="email" name="email" class="cform__input">
         </label>
 
-        <label for="" class="cform__label">Telefonnummer
-          <input type="tel" name="" id="" class="cform__input">
+        <label class="cform__label">Telefonnummer
+          <input type="tel" name="phone" class="cform__input">
         </label>
       </div>
 
       <div class="cform__line">
-        <label for="" class="cform__label">Nachricht<span>*</span>
-          <textarea name="" id="" cols="30" rows="10" class="cform__input"></textarea>
+        <label class="cform__label">Nachricht<span>*</span>
+          <textarea name="message" cols="30" rows="10" class="cform__input">
+          Das Kontaktformular funktioniert leider noch nicht
+          </textarea>
         </label>
       </div>
 
       <div class="cform__line">
         <label class="cform__label">
-          <input type="checkbox" name="" class="cform__chk-input">
+          <input type="checkbox" name="agree-chk" class="cform__chk-input">
           Ich stimme der erste Option zu.
         </label>
       </div>
 
       <div class="cform__line">
         <label class="cform__label">
-          <input type="checkbox" name="" class="cform__chk-input">          
+          <input type="checkbox" name="news-chk" class="cform__chk-input">          
           Ich stimme der zweite Option zu.
         </label>
       </div>
 
       <div class="cform__line">
-        <button class="cform__submit" disabled>Senden</button>
+        <button class="cform__submit">Senden</button>
       </div>
     </form>
 
