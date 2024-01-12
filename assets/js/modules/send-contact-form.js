@@ -1,4 +1,5 @@
 import { contactFormValidator } from "./form-validator"
+import { showFormErrors, showFormSuccess } from "./show-form-messages"
 
 const cForm = document.querySelector('#cform')
 
@@ -11,18 +12,27 @@ if (cForm) {
   })
 }
 
+showFormSuccess()
+
 async function sendForm(form) {
   const formData = new FormData(form)
   const validatorResult = contactFormValidator(formData)
-
-  console.log('Validation result', validatorResult)
-  try {
-    const response = await fetch('/api/submit', {
-      method: 'POST',
-      body: formData,
-    })
-    console.log('Response', await response.json());
-  } catch (error) {
-    console.error(error)
+  
+  if (Object.keys(validatorResult).length > 0) {
+    showFormErrors(form, validatorResult)
+    return
   }
+
+  console.log('Validation passed')
+  // showFormSuccess(form)
+
+  // try {
+  //   const response = await fetch('/api/submit', {
+  //     method: 'POST',
+  //     body: formData,
+  //   })
+  //   console.log('Response', await response.json());
+  // } catch (error) {
+  //   console.error(error)
+  // }
 }

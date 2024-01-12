@@ -11,53 +11,108 @@
       <h2 class="contact-form__header">{{ . }}</h2>
     {{- end }}
 
-    <form id="cform" class="contact-form__form cform">
-      <div class="cform__line">
-        <label class="cform__label">Name<span>*</span>
-          <input type="text" name="name" class="cform__input" value="Test Name">
+    <form id="cform" class="contact-form__form cform" autocomplete="on">
+      <div class="cform__field">
+        <label class="cform__label">Name
+          <input
+            class="cform__input"
+            type="text"
+            name="name"
+            required
+            maxlength="128"
+            autocomplete="name"
+            value="Test Name"
+          >
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
+      </div>
 
+      <div class="cform__field">
         <label class="cform__label">Unternehmensname
-          <input type="text" name="company-name" class="cform__input">
+          <input
+            class="cform__input"
+            type="text"
+            name="company-name"
+            maxlength="256"
+            autocomplete="organization"
+          >
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
       </div>
 
-      <div class="cform__line">
-        <label class="cform__label">Email<span>*</span>
-          <input type="email" name="email" class="cform__input">
+      <div class="cform__field">
+        <label class="cform__label">Email
+          <input
+            class="cform__input"
+            type="email"
+            name="email"
+            required
+            maxlength="128"
+            autocomplete="email"
+          >
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
+      </div>  
 
+      <div class="cform__field">
         <label class="cform__label">Telefonnummer
-          <input type="tel" name="phone" class="cform__input">
+          <input
+            class="cform__input"
+            type="tel"
+            name="phone"
+            minlength="3"
+            maxlength="128"
+            autocomplete="tel"
+          >
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
       </div>
 
-      <div class="cform__line">
-        <label class="cform__label">Nachricht<span>*</span>
-          <textarea name="message" cols="30" rows="10" class="cform__input">
-          Das Kontaktformular funktioniert leider noch nicht
+      <div class="cform__field cform__field--wide">
+        <label class="cform__label">Nachricht
+          <textarea
+          class="cform__input"
+          name="message"
+          required
+          maxlength="4096"
+          cols="30" rows="10"
+          >Das Kontaktformular funktioniert leider noch nicht
           </textarea>
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
       </div>
 
-      <div class="cform__line">
+      <div class="cform__field">
         <label class="cform__label">
-          <input type="checkbox" name="agree-chk" class="cform__chk-input">
+          <input
+            class="cform__chk-input"
+            type="checkbox"
+            name="agree-chk"
+            required
+          >
           Ich stimme der erste Option zu.
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
       </div>
 
-      <div class="cform__line">
+      <div class="cform__field">
         <label class="cform__label">
           <input type="checkbox" name="news-chk" class="cform__chk-input">          
           Ich stimme der zweite Option zu.
         </label>
+        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
       </div>
 
-      <div class="cform__line">
+      <div class="cform__field cform__field--wide">
         <button class="cform__submit">Senden</button>
       </div>
     </form>
+
+    <dialog class="success-dialog">
+      <button class="success-dialog__close" autofocus>Close</button>
+      <p>Congrats!<br>You message successfuly sent</p>
+    </dialog>
+    <button class="tmp_show-btn" type="button">Show</button>
 
     <div class="contact-form__addon">
       <h3>{{ .Params.addon_header }}</h3>
