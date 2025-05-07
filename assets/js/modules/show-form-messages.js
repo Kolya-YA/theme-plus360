@@ -1,9 +1,19 @@
 function showFormErrors(form, errors) {
     console.log('Validation failed')
-    console.log('Validation result: ', validatorResult)
+    console.log('Errors: ', errors)
+
+    // console.log('Validation result: ', validatorResult)
 }
 
 function showFormSuccess(form) {
+    // Temporary disable submit button
+    const submitBtn = form.querySelector('.cform__submit')
+    submitBtn.disabled = true
+    setTimeout(() => {
+        submitBtn.disabled = false
+    }, 5000)
+
+
     // Show success dialog
     const tmpShowBtn = document.querySelector('.tmp_show-btn')
 

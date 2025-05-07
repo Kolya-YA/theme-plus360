@@ -8,7 +8,7 @@
 
 {{ $footerScript := resources.Get "js/footer-script.js" | js.Build (dict "target" "es2018") -}}
 
-{{ if not .Site.IsServer }}
+{{ if not hugo.IsServer }}
   {{ $footerScript := $footerScript | minify | fingerprint -}}
 {{ end -}}
 
