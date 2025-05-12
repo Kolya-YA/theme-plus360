@@ -1,38 +1,45 @@
 {{ define "main" }}
-<section id="main">
+{{ $faqData := sort .Site.Data.faq "order" }}
+<section id="main" class="faq">
+    <h1 id="title">{{ .Title }}</h1>
+    <div id="content">{{ .Content }}</div>
 
-  <h1 id="title">{{ .Title }}</h1>
-
-  <div>
-    <article id="content">
-        {{ .Content }}
-    </article>
-  </div>
-
-  <div class="faq-list">
-    <div class="faq-list__header">
-      {{ with .Params.subtitle }}
+    <div class="faq__list">
+        {{- with .Params.subtitle }}
         <h2>{{ . }}</h2>
-      {{ end }}
-      {{/*  <button>Alles zusammenklappen</button>  */}}
+        {{- end }}
+
+        {{- range $faqData }}
+        <details>
+            <summary>{{ .q | markdownify }}</summary>
+            <p>{{ .a | markdownify }}</p>
+        </details>
+        {{ end }}
     </div>
 
-    <ul class="faq-list__list">
-      {{ range sort .Site.Data.faq "order" }}        
-        <li class="faq-item">
-            <details class="faq-item__details">
-              <summary class="faq-item__question">{{ .q | markdownify }}</summary>
-              <p class="faq-item__answer">{{ .a | markdownify }}</p>
-            </details>
-        </li>
-      {{ end }}
-    </ul>
-
-    <div class="faq-list__addon">
-      <h3>{{ .Params.addon_header }}</h3>
-      <p>{{ .Params.add_on_notes }}</p>
+    {{ with .Params.faq_notes }}
+    <div class="faq__notes">
+        <p>{{ . }}</p>
     </div>
-  </div>
+    {{ end }}
 </section>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {{- range $i, $_ := $faqData }}
+    {{- if $i }},{{ end }}
+    {
+      "@type": "Question",
+      "name": {{ .q | markdownify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ .a | markdownify }}"
+      }
+    }
+    {{ end }}
+  ]
+}
+</script>
 {{ end }}
