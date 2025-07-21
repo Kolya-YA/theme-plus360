@@ -1,0 +1,49 @@
+<nav aria-label='{{ T "langswitcher" }}'>
+    <ul class="lang-switcher__list">
+        {{ range .Site.Languages }}
+        <li class="lang-switcher__item">
+            {{ if eq .Lang site.Language.Lang }}
+            <span aria-current="page" class="lang-switcher__current" lang="{{ .Lang }}">
+                {{ .LanguageName }}
+            </span>
+            {{ else }}
+            {{ $translated := index (where page.Translations "Lang" .Lang) 0}}
+            {{ if $translated }}
+            <a href="{{ $translated.RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}"
+               class="lang-switcher__link">
+                {{ .LanguageName }}
+            </a>
+            {{ else }}
+            <a href="{{ site.Home.RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}" class="lang-switcher__link">
+                {{ .LanguageName }}
+                <span class="visually-hidden">(нет перевода)</span>
+            </a>
+            {{ end }}
+            {{ end }}
+        </li>
+        {{ end }}
+    </ul>
+</nav>
+<style>
+    .lang-switcher__list {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        padding: 0;
+      }
+      
+      .lang-switcher__link {
+        text-decoration: none;
+        color: #006;
+      }
+      
+      .lang-switcher__current {
+        font-weight: bold;
+        color: #000;
+      }
+      
+      .visually-hidden {
+        position: absolute;
+        left: -9999px;
+      }
+</style>
