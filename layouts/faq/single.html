@@ -1,45 +1,45 @@
 {{ define "main" }}
-{{ $faqData := sort .Site.Data.faq "order" }}
-<section id="main" class="faq">
-    <h1 id="title">{{ .Title }}</h1>
-    <div id="content">{{ .Content }}</div>
-
-    <div class="faq__list">
-        {{- with .Params.subtitle }}
-        <h2>{{ . }}</h2>
-        {{- end }}
-
-        {{- range $faqData }}
-        <details>
-            <summary>{{ .q | markdownify }}</summary>
-            <p>{{ .a | markdownify }}</p>
-        </details>
-        {{ end }}
-    </div>
-
-    {{ with .Params.faq_notes }}
-    <div class="faq__notes">
-        <p>{{ . }}</p>
-    </div>
-    {{ end }}
-</section>
+{{/* {{ $faqData := sort site.Data.faq "order" }} */}}
+{{ $faqData := index site.Data (printf "faq.%s" site.Language.Lang) }}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {{- range $i, $_ := $faqData }}
-    {{- if $i }},{{ end }}
-    {
-      "@type": "Question",
-      "name": {{ .q | markdownify }},
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "{{ .a | markdownify }}"
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {{- range $i, $_ := $faqData }}
+      {{- if $i }},{{ end }}
+      {
+        "@type": "Question",
+        "name": {{ .q | markdownify }},
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "{{ .a | markdownify }}"
+        }
       }
-    }
-    {{ end }}
-  ]
-}
+      {{ end }}
+    ]
+  }
 </script>
+<section id="main" class="faq">
+  <h1 id="title">{{ .Title }}</h1>
+  <div id="content">{{ .Content }}</div>
+  <div class="faq__list">
+    {{- with .Params.subtitle }}
+    <h2>{{ . }}</h2>
+    {{- end }}
+
+    {{- range (sort $faqData "order") }}
+    <details>
+      <summary>{{ .q | markdownify }}</summary>
+      <p>{{ .a | markdownify }}</p>
+    </details>
+    {{ end }}
+  </div>
+
+  {{- with .Params.faq_notes }}
+  <div class="faq__notes">
+    <p>{{ . }}</p>
+  </div>
+  {{- end }}
+</section>
 {{ end }}
