@@ -1,0 +1,15 @@
+{{- $sprite := .Get "sprite" -}}
+{{- $columns := .Get "columns" | default "3" -}}
+{{- $class := .Get "class" | default "" -}}
+
+{{- $spritePath := printf "svg/%s.svg" $sprite -}}
+{{- $spriteContent := resources.Get $spritePath -}}
+{{- if $spriteContent -}}
+    {{ $spriteContent.Content | safeHTML }}
+{{- else -}}
+    {{- warnf "SVG sprite not found: %s" $spritePath -}}
+{{- end -}}
+
+<div class="card-gallery card-gallery--cols-{{ $columns }} {{ $class }}">
+    {{ .Inner }}
+</div>

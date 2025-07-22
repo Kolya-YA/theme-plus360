@@ -1,0 +1,24 @@
+{{/* This card schould be used only inside of card-gallery shortcode */}}
+{{- $icon := .Get "icon" -}}
+{{- $iconSize := default "36" .Parent.Params.iconSize -}}
+{{- $title := .Get "title" -}}
+{{- $link := .Get "link" -}}
+{{- $target := .Get "target" | default "_self" -}}
+
+{{- $iconStr := cond $icon (printf `<svg class="card__icon" width="%s" height="%s"><use href="#%s"></use></svg>` $iconSize $iconSize $icon) "" -}}
+{{- $titleStr := cond $title (printf `<h3 class="card__title">%s</h3>` $title) "" -}}
+{{- $contentStr := cond .Inner (printf `<div class="card__text">%s</div>` (.Inner | markdownify)) "" -}}
+
+{{- $cardContent := printf `<div class="card">
+    %s
+    %s
+    %s
+</div>` $iconStr $titleStr $contentStr -}}
+
+{{- if $link -}}
+<a href="{{ $link }}" target="{{ $target }}" style="text-decoration: none; color: inherit;">
+    {{ $cardContent | safeHTML }}
+</a>
+{{- else -}}
+{{ $cardContent | safeHTML }}
+{{- end -}}
