@@ -1,3 +1,5 @@
+@use '../var' as *;
+
 .header {
   position: relative;
   display: grid;
@@ -32,8 +34,6 @@
     //   align-self: center;
     // }
   }
-  
-  @import "logo-phone", "menu";
   
   .header__arc {
     position: absolute;

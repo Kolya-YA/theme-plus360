@@ -1,3 +1,5 @@
+@use '../var' as *;
+
 .menu {
   display: flex;
   flex-direction: column;
@@ -74,7 +76,6 @@
       color: var(--link-hover-color)
     }
   }
-
 
   .menu__link--current {
     font-weight: 600;

@@ -1,0 +1,6 @@
+{{- $headScript := resources.Get "js/head-script.js" | minify }}
+{{- if not hugo.IsServer }}
+    {{ $headScript := $headScript | minify -}}
+{{- end -}}
+
+<script>{{ $headScript.Content | safeJS }}</script>

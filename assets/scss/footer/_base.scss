@@ -1,3 +1,5 @@
+@use '../var' as *;
+
 .footer {
   background-color:var(--footer-bg-color);
   font-family: var(--footer-font-family);
