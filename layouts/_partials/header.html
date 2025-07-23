@@ -1,11 +1,11 @@
 <header class="header">
   <div class="width-wrapper">
     <div class="header__top logo-phone">
-      <a class="logo-phone__logo logo" href="{{ .Site.BaseURL }}">
-        <h1 class="logo__title">
+      <h1 class="logo">
+        <a class="link" href="{{ .Site.BaseURL }}">
           <span>{{ .Site.Params.titleWord }}</span>{{ .Site.Params.titleDigit }}{{ with  .Site.Params.department }} – <span>{{ . }}</span>{{ end }}
-        </h1>
-      </a>
+        </a>
+      </h1>
       <a class="header__phone phone" href="tel:{{ .Site.Params.phoneLink }}">
         <svg class="phone__icon" width="32" height="32">
           <use href="{{ .Site.BaseURL }}images/menu-sprite.svg#phone"></use>

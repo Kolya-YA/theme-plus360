@@ -6,47 +6,54 @@
   justify-content: flex-start;
   align-items: baseline;
   flex-wrap: wrap;
-  column-gap: 20px;
-  font-size: 120%;
-  font-weight: 100;
+  column-gap: 1rem;
   
   .logo {
-    .logo__title {
+    .link {
       color: #fff;
       text-shadow: -1px 1px 1px #777,
                     1px 1px 1px #777,
                     1px -1px 1px #777,
                    -1px -1px 1px #777;
+      font-size: 2.4rem;
       font-weight: 100;
       line-height: 1em;
       margin: 0;
-      
+
+      &:hover,
+      &:focus-visible {
+        text-shadow: -1px 1px 1px var(--link-hover-color),
+                    1px 1px 1px var(--link-hover-color),
+                    1px -1px 1px var(--link-hover-color),
+                   -1px -1px 1px var(--link-hover-color);
+      }
+
       span {
         font-weight: 600;
         letter-spacing: -0.02em;
-
       }
-
     }
   }
   
   .phone {
     flex-grow: 1;
+    font-size: 120%;
+    font-weight: 100;
     text-align: center;
     align-self: center;
 
-    .phone__icon {
-      fill: var(--text-main-color);
-      &:hover {
+    &:hover,
+    &:focus-visible {
+      color: var(--link-hover-color);
+
+      .phone__icon {
         fill: var(--link-hover-color);
       }
     }
+
     
     .phone__text {
-      display:none;
-      &:hover {
-        color: var(--link-hover-color)
-      }
+      display: none;
     }
 
     @media (min-width: $header-top-dskt-width) {
@@ -55,7 +62,7 @@
       }
       
       .phone__text {
-        display:inline;
+        display: inline;
         font-size: 1.3em;
       }
     }

@@ -1,9 +1,9 @@
-<nav aria-label='{{ T "langswitcher" }}'>
-    <ul class="lang-switcher__list">
+<nav class="header__lang lang-switcher" aria-label='{{ T "langswitcher" }}'>
+    <ul class="list">
         {{ range .Site.Languages }}
-        <li class="lang-switcher__item">
+        <li class="list__item">
             {{ if eq .Lang site.Language.Lang }}
-            <span aria-current="page" class="lang-switcher__current" lang="{{ .Lang }}">
+            <span aria-current="page" class="current" lang="{{ .Lang }}">
                 {{ .LanguageName }}
             </span>
             {{ else }}
@@ -14,9 +14,9 @@
                 {{ .LanguageName }}
             </a>
             {{ else }}
-            <a href="{{ site.Home.RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}" class="lang-switcher__link">
+            <a href="{{ site.Home.RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}" class="link">
                 {{ .LanguageName }}
-                <span class="visually-hidden">(нет перевода)</span>
+                <span class="sr-only">(нет перевода)</span>
             </a>
             {{ end }}
             {{ end }}

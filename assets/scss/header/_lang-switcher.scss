@@ -1,21 +1,27 @@
-.lang-switcher__list {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    padding: 0;
-  }
+.lang-switcher{
   
-  .lang-switcher__link {
-    text-decoration: none;
-    color: #006;
-  }
-  
-  .lang-switcher__current {
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .visually-hidden {
-    position: absolute;
-    left: -9999px;
-  }
+  .list {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      font-weight: 200;
+      color: var(--text-main-color);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+
+      .link {
+        text-decoration: none;
+        color: inherit;
+        
+        &:hover,
+        &:focus-visible {
+          color: var(--link-hover-color);
+        }
+      }
+      
+      .current {
+        font-weight: 600;
+      }
+    }
+}
