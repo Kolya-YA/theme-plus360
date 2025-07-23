@@ -1,5 +1,5 @@
 import { contactFormValidator } from "./form-validator"
-import { showFormErrors, showFormSuccess } from "./show-form-messages"
+import { showFormErrors, showFormSuccess } from "./form-messages"
 
 const cForm = document.querySelector('#cform')
 

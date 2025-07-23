@@ -1,5 +1,11 @@
+{{ $headScript := resources.Get "js/head-script.js" | minify }}
+{{ if not hugo.IsServer }}
+  {{ $headScript := $headScript | minify -}}
+{{ end -}}
 {{ $title := print .Title " | " .Site.Title  -}}
-{{ if .IsHome }}{{ $title = .Site.Title }}{{ end -}}
+{{ if .IsHome }}
+  {{ $title = .Site.Title }}
+{{ end -}}
 
 {{ $description := "" -}}
 {{ with .Description }}
@@ -15,6 +21,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ $title }}</title>
   <meta name="description" content="{{ $description }}" />
+  <script>{{ $headScript.Content  | safeJS }}</script>
   <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-
 </head>

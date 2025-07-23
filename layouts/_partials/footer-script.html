@@ -1,12 +1,4 @@
-{{ if .Params.pano360 -}}
-  {{ $pannellumScript := resources.Get "vendor/pannellum/pannellum.js" | minify | fingerprint -}}
-  {{ $pannellumCss := resources.Get "vendor/pannellum/pannellum.css" | minify | fingerprint -}}
-
-  <link rel="stylesheet" href="{{ $pannellumCss.RelPermalink }}"/>
-  <script defer src="{{ $pannellumScript.RelPermalink }}"></script>
-{{ end -}}
-
-{{ $footerScript := resources.Get "js/footer-script.js" | js.Build (dict "target" "es2018") -}}
+{{ $footerScript := resources.Get "js/footer-script.js" | js.Build (dict "target" "es2020") -}}
 
 {{ if not hugo.IsServer }}
   {{ $footerScript := $footerScript | minify | fingerprint -}}

@@ -1,4 +1,3 @@
-import './modules/top-menu'
-import './modules/back-to-top' //todo
-import './modules/infinite-scroller'
-import './modules/send-contact-form'
+import './footer-modules/top-menu'
+import './footer-modules/back-to-top' //todo
+import './footer-modules/infinite-scroller'
