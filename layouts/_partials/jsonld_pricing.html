@@ -1,0 +1,40 @@
+{{- $pricing := .Site.Data.pricing -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ .Title }}",
+  "description": "{{ .Description }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Plus360"
+  },
+  "offers": [
+    {{- range $index, $plan := $pricing.monthly_plans.plans -}}
+    {
+      "@type": "Offer",
+      "name": "{{ i18n (printf "plan_%s_name" .id) }}",
+      "description": "{{ i18n (printf "plan_%s_ideal_for" .id) }}",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "{{ .price }}",
+        "priceCurrency": "EUR",
+        "billingDuration": "P1M"
+      }
+    }
+    {{- if ne (add $index 1) (len $pricing.monthly_plans.plans) }},{{ end -}}
+    {{- end }},
+    {
+      "@type": "Offer",
+      "name": "{{ i18n $pricing.hourly_work.title_key }}",
+      "description": "{{ i18n $pricing.hourly_work.subtitle_key }}",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "{{ $pricing.hourly_work.rate }}",
+        "priceCurrency": "EUR",
+        "unitCode": "HUR"
+      }
+    }
+  ]
+}
+</script>
