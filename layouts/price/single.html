@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{ partial "jsonld_pricing.html" . }}
-<div class="pricing-page">
+<div class="price">
 
   <header class="page-header">
     <h1>{{ .Title }}</h1>
@@ -8,38 +8,38 @@
   </header>
 
   {{ $pricing := site.Data.pricing }}
-
+  
   <!-- Section 1: Monthly Plans -->
   <section id="monthly-plans" class="pricing-section" aria-labelledby="monthly-plans-title">
     <header class="section-header">
-      <h2 id="monthly-plans-title">{{ i18n $pricing.monthly_plans.title_key }}</h2>
-      <p>{{ i18n $pricing.monthly_plans.subtitle_key }}</p>
+      <h2 id="monthly-plans-title">{{ T $pricing.monthly_plans.title_key }}</h2>
+      <p>{{ T $pricing.monthly_plans.subtitle_key }}</p>
     </header>
     <ul class="plans-list">
       {{ range $pricing.monthly_plans.plans }}
-        <li>
-          <article class="plan-card {{ if .popular }}is-popular{{ end }}">
-            <div class="plan-card__header">
-              <h4>
-                {{ i18n (printf "plan_%s_name" .id) }}
-                {{ if .popular }}<span class="visually-hidden"> ({{ i18n "popular_plan_text" }})</span>{{ end }}
-              </h4>
-              <p class="plan-card__description">{{ i18n (printf "plan_%s_ideal_for" .id) }}</p>
+      <li>
+        <article class="plan-card{{ if .popular }} is-popular{{ end }}">
+          <div class="plan-card__header">
+            <h4>
+              {{ i18n (printf "plan_%s_name" .id) }}
+              {{ if .popular }}<span class="visually-hidden"> ({{ i18n "popular_plan_text" }})</span>{{ end }}
+            </h4>
+            <p class="plan-card__description">{{ i18n (printf "plan_%s_ideal_for" .id) }}</p>
+          </div>
+          <div class="plan-card__body">
+            <div class="plan-card__price">
+              <span>{{ .price }}</span>{{ $pricing.currency_symbol }}
+              <small>/mo</small>
             </div>
-            <div class="plan-card__body">
-              <div class="plan-card__price">
-                <span>{{ .price }}</span>{{ $pricing.currency_symbol }}
-                <small>/mo</small>
-              </div>
-              <ul class="plan-card__features">
-                {{ range .features }}
-                  <li>{{ i18n (printf "feature_%s" .) }}</li>
-                {{ end }}
-              </ul>
-              <a href="#cta" class="button">{{ i18n "cta_button" }}</a>
-            </div>
-          </article>
-        </li>
+            <ul class="plan-card__features">
+              {{ range .features }}
+              <li>{{ i18n (printf "feature_%s" .) }}</li>
+              {{ end }}
+            </ul>
+            <a href="#cta" class="button">{{ i18n "cta_button" }}</a>
+          </div>
+        </article>
+      </li>
       {{ end }}
     </ul>
   </section>
@@ -52,8 +52,8 @@
         <p>{{ i18n $pricing.hourly_work.subtitle_key }}</p>
       </div>
       <div class="hourly-rate__value">
-        <div class="price-display">{{ $pricing.hourly_work.rate }}{{ $pricing.currency_symbol }}</div>
-        <div class="price-unit">{{ i18n $pricing.hourly_work.rate_key }}</div>
+        <span class="price-display">{{ $pricing.hourly_work.rate }}{{ $pricing.currency_symbol }}</span>
+        <span class="price-unit">{{ i18n $pricing.hourly_work.rate_key }}</span>
       </div>
     </div>
   </section>
@@ -65,36 +65,36 @@
     </header>
     <ul class="task-examples-list">
       {{ range $pricing.task_examples.tasks }}
-        <li>
-          <article class="task-card">
-            <div class="task-card__body">
-              <h5>{{ i18n (printf "task_%s_name" .id) }}</h5>
-              <p>{{ i18n (printf "task_%s_desc" .id) }}</p>
-            </div>
-            <div class="task-card__footer">
-              <strong>Estimate:</strong> {{ i18n .estimate_key }}
-            </div>
-          </article>
-        </li>
+      <li>
+        <article class="task-card">
+          <div class="task-card__body">
+            <h5>{{ i18n (printf "task_%s_name" .id) }}</h5>
+            <p>{{ i18n (printf "task_%s_desc" .id) }}</p>
+          </div>
+          <div class="task-card__footer">
+            <strong>Estimate:</strong> {{ i18n .estimate_key }}
+          </div>
+        </article>
+      </li>
       {{ end }}
     </ul>
   </section>
 
   <!-- Section 4: Hour Packages -->
   <section id="hour-packages" class="pricing-section" aria-labelledby="hour-packages-title">
-     <header class="section-header">
+    <header class="section-header">
       <h2 id="hour-packages-title">{{ i18n $pricing.hour_packages.title_key }}</h2>
       <p>{{ i18n $pricing.hour_packages.subtitle_key }}</p>
     </header>
     <ul class="hour-packages-list">
-        {{ range $pricing.hour_packages.packages }}
-         <li>
-            <div class="package-card">
-                <h5>{{ i18n .name_key }}</h5>
-                <p class="package-card__discount">{{ i18n .discount_key }}</p>
-            </div>
-         </li>
-        {{ end }}
+      {{ range $pricing.hour_packages.packages }}
+      <li>
+        <div class="package-card">
+          <h5>{{ i18n .name_key }}</h5>
+          <p class="package-card__discount">{{ i18n .discount_key }}</p>
+        </div>
+      </li>
+      {{ end }}
     </ul>
   </section>
 
@@ -104,7 +104,7 @@
       <h4 id="not-included-title">{{ i18n $pricing.not_included.title_key }}</h4>
       <ul class="no-bullet-list">
         {{ range $pricing.not_included.items }}
-          <li>{{ i18n . }}</li>
+        <li>{{ i18n . }}</li>
         {{ end }}
       </ul>
     </div>

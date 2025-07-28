@@ -2,37 +2,47 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "{{ .Title }}",
-  "description": "{{ .Description }}",
-  "brand": {
-    "@type": "Brand",
-    "name": "Plus360"
-  },
-  "offers": [
+  "@graph": [
     {{- range $index, $plan := $pricing.monthly_plans.plans -}}
     {
-      "@type": "Offer",
-      "name": "{{ i18n (printf "plan_%s_name" .id) }}",
-      "description": "{{ i18n (printf "plan_%s_ideal_for" .id) }}",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
+      "@type": "Product",
+      "name": "{{ i18n (printf "plan_%s_full_name" .id) }}",
+      "description": "{{ i18n (printf "plan_%s_full_description" .id) }}",
+      "sku": "{{ .sku }}",
+      "offers": {
+        "@type": "Offer",
         "price": "{{ .price }}",
         "priceCurrency": "EUR",
-        "billingDuration": "P1M"
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "{{ .price }}",
+          "priceCurrency": "EUR",
+          "billingDuration": 1,
+          "billingIncrement": 1,
+          "unitCode": "MON"
+        },
+        "availability": "https://schema.org/InStock"
       }
-    }
-    {{- if ne (add $index 1) (len $pricing.monthly_plans.plans) }},{{ end -}}
-    {{- end }},
+    },
+    {{- end -}}
     {
-      "@type": "Offer",
-      "name": "{{ i18n $pricing.hourly_work.title_key }}",
-      "description": "{{ i18n $pricing.hourly_work.subtitle_key }}",
-      "priceSpecification": {
-        "@type": "UnitPriceSpecification",
+      "@type": "Product",
+      "name": "{{ i18n $pricing.hourly_work.full_name_key }}",
+      "description": "{{ i18n $pricing.hourly_work.full_description_key }}",
+      "sku": "{{ $pricing.hourly_work.sku }}",
+      "offers": {
+        "@type": "Offer",
         "price": "{{ $pricing.hourly_work.rate }}",
         "priceCurrency": "EUR",
-        "unitCode": "HUR"
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "{{ $pricing.hourly_work.rate }}",
+          "priceCurrency": "EUR",
+          "billingDuration": 1,
+          "billingIncrement": 1,
+          "unitCode": "HUR"
+        },
+        "availability": "https://schema.org/InStock"
       }
     }
   ]
