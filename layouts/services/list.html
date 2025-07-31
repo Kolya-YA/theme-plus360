@@ -1,12 +1,6 @@
 {{ define "main" }}
 
-<h1 class="title">{{ .Title }}</h1>
-
-{{- with .Params.subtitle }}
-<h2 class="subtitle">{{ . }}</h2>
-{{- end }}
-
-{{ .Content }}
+{{ partial "common/page-header.html" . }}
 
 <section class="service-items">
   {{- range $k, $item := .Pages.ByWeight }}

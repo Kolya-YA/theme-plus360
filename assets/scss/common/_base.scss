@@ -23,6 +23,14 @@ body {
   color: var(--text-main-color)
 }
 
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
 .wrapper {
   min-height: 100%;
   // max-width: var(--wraper-max-width);

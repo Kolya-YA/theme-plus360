@@ -1,17 +1,6 @@
 {{ define "main" }}
-  <main class="portfolio">
-    {{ if not .Parent.IsHome }}
-    <div class="back-link">
-      <a href="{{ .Parent.RelPermalink  }}"><— {{ .Parent.Title }}</a>
-    </div>
-    {{ end }}
-
-    <h1 class="portfolio__title">{{ .Title }}</h1>
-    {{ with .Params.subtitle }}
-    <h2 class="portfolio__subtitle">{{ . }}</h2>
-    {{ end }}
-
-    {{ .Content }}
+  <div class="portfolio">
+    {{ partial "common/page-header.html" . }}
     
     <ul class="portfolio__categores categories">
       {{/*  {{if gt (len .Pages) 1 }}
@@ -55,5 +44,5 @@
       </ul>
     {{ end }}
     </ul>
-  </main>
+  </d>
 {{ end }}

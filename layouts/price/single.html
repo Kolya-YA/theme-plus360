@@ -1,11 +1,7 @@
 {{ define "main" }}
 {{ partial "jsonld_pricing.html" . }}
 <div class="price">
-
-  <header class="page-header">
-    <h1>{{ .Title }}</h1>
-    <p>{{ .Content }}</p>
-  </header>
+  {{ partial "common/page-header.html" . }}
 
   {{ $pricing := site.Data.pricing }}
   
@@ -15,29 +11,30 @@
       <h2 id="monthly-plans-title">{{ T $pricing.monthly_plans.title_key }}</h2>
       <p>{{ T $pricing.monthly_plans.subtitle_key }}</p>
     </header>
-    <ul class="plans-list">
+    <ul class="pricing-plans">
       {{ range $pricing.monthly_plans.plans }}
       <li>
-        <article class="plan-card{{ if .popular }} is-popular{{ end }}">
-          <div class="plan-card__header">
-            <h4>
+        <article class="card{{ if .popular }} popular{{ end }}">
+          <div class="card__header">
+            <h3>
               {{ i18n (printf "plan_%s_name" .id) }}
-              {{ if .popular }}<span class="visually-hidden"> ({{ i18n "popular_plan_text" }})</span>{{ end }}
-            </h4>
+              {{ if .popular }}<span class="sr-only"> ({{ i18n "popular_plan_text" }})</span>{{ end }}
+            </h3>
             <p class="plan-card__description">{{ i18n (printf "plan_%s_ideal_for" .id) }}</p>
           </div>
-          <div class="plan-card__body">
-            <div class="plan-card__price">
-              <span>{{ .price }}</span>{{ $pricing.currency_symbol }}
-              <small>/mo</small>
-            </div>
-            <ul class="plan-card__features">
-              {{ range .features }}
-              <li>{{ i18n (printf "feature_%s" .) }}</li>
-              {{ end }}
-            </ul>
-            <a href="#cta" class="button">{{ i18n "cta_button" }}</a>
+          
+          <div class="card__price">
+            <span class="amount">{{ $pricing.currency_symbol }}{{ .price }}</span>
+            <span class="period">/mo</span>
           </div>
+          
+          <ul class="card__features">
+            {{ range .features }}
+            <li>{{ i18n (printf "feature_%s" .) }}</li>
+            {{ end }}
+          </ul>
+
+          <a href="#cta" class="card__button">{{ i18n "cta_button" }}</a>
         </article>
       </li>
       {{ end }}

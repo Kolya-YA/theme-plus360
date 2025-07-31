@@ -21,8 +21,8 @@
   }
 </script>
 <section id="main" class="faq">
-  <h1 id="title">{{ .Title }}</h1>
-  <div id="content">{{ .Content }}</div>
+  {{ partial "common/page-header.html" . }}
+
   <div class="faq__list">
     {{- with .Params.subtitle }}
     <h2>{{ . }}</h2>

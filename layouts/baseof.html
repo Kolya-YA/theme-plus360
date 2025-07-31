@@ -7,8 +7,10 @@
 		{{- partial "header.html" . -}}
 		<div id="content">
 			<div class="width-wrapper">
-				{{- block "main" . }}
-				{{- end }}
+				<main>
+					{{- block "main" . }}
+					{{- end }}
+				</main>
 			</div>
 		</div>
 		{{- partial "footer.html" . -}}
