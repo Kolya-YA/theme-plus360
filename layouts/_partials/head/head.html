@@ -1,0 +1,21 @@
+{{- $title := print .Title " | " .Site.Title  -}}
+{{- if .IsHome }}
+  {{- $title = .Site.Title }}
+{{- end -}}
+
+{{- $description := "" -}}
+{{- with .Description }}
+  {{- $description = . -}}
+{{- else -}}
+  {{- with $.Site.Params.description -}}{{ $description = . -}}{{ end -}}
+{{- end -}}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $description }}">
+  {{ partial "head/head-inline-script.html" . }}
+  {{ partial "head/styles.html" . }}
+</head>
