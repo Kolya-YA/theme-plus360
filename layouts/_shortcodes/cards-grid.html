@@ -10,6 +10,6 @@
     {{- warnf "SVG sprite not found: %s" $spritePath -}}
 {{- end -}}
 
-<div class="grid card-gallery {{ $class }}" max-col-count="{{ $columns }}">
+<div class="cards-grid {{ $class }}" max-col-count="{{ $columns }}">
     {{ .Inner }}
 </div>

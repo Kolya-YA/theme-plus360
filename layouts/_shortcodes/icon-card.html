@@ -9,7 +9,7 @@
 {{- $titleStr := cond $title (printf `<h3 class="card__title">%s</h3>` $title) "" -}}
 {{- $contentStr := cond .Inner (printf `<div class="card__text">%s</div>` (.Inner | markdownify)) "" -}}
 
-{{- $cardContent := printf `<div class="card">
+{{- $cardContent := printf `<div class="icon-card">
     %s
     %s
     %s
