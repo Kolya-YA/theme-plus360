@@ -6,24 +6,22 @@ $service-item-dskt-width: 650px;
 
 
 :root {
-  --wraper-max-width: 1240px;
+  --wraper-max-width: 85rem;
   --block-gap: 1rem;
   --block-padding: 1rem;
-  --card-border-radius: 4px;
-  
-  --header-font-family: 'Open Sans', sans-serif;
-  --common-font-family: 'Open Sans', sans-serif;
-  --footer-font-family: -apple-system, 'Open Sans', sans-serif;
-  --common_font-size: 16px;
-  
-  
+  --card-border-radius: calc(1rem / 4);
 
+  --common-font-family: system-ui;
+  --header-font-family: system-ui;
+  --footer-font-family: system-ui;
+  --common_font-size: 16px;
 
   --line-color: #c8c8c8;
   --body-bg-color: #fff;
   --block-bg-color: #fff;
-  --text-main-color: #3d3939;
-  --text-main-color-50a: #3d393980;
+  --text-color: #3d3939;
+  --text-color-50a: #3d393980;
+  --header-color: #3d3939;
   --header-bg-color: hsl(0, 0%, 92%);
   --footer-bg-color: hsl(0, 0%, 20%);
   --footer-text-color: hsl(36, 100%, 90%);
