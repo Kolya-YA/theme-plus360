@@ -1,35 +1,20 @@
-function showFormErrors(form, errors) {
+export { showErrorsDialog, showDialog }
+
+function showErrorsDialog(form, errors) {
     console.log('Validation failed')
     console.log('Errors: ', errors)
 
     // console.log('Validation result: ', validatorResult)
 }
 
-function showFormSuccess(form) {
-    // Temporary disable submit button
-    const submitBtn = form.querySelector('.cform__submit')
-    submitBtn.disabled = true
-    setTimeout(() => {
-        submitBtn.disabled = false
-    }, 5000)
+function showDialog(dialogClass) {
 
+    const dialog = document.querySelector(dialogClass)
+    const closeBtn = dialog.querySelector('button.close')
 
-    // Show success dialog
-    const tmpShowBtn = document.querySelector('.tmp_show-btn')
+    dialog.showModal()
 
-    const successDialog = document.querySelector('.success-dialog')
-    const successDialogClose = successDialog.querySelector('.success-dialog__close')
-
-    // successDialog.showModal()
-
-    tmpShowBtn.addEventListener('click', () => {
-        successDialog.showModal()
-    })
-
-    successDialogClose.addEventListener('click', () => {
-        successDialog.close()
-    })
-    // form.reset()
+    closeBtn.addEventListener('click', () => {
+        dialog.close()
+    }, { once: true })
 }
-
-export { showFormErrors, showFormSuccess }
