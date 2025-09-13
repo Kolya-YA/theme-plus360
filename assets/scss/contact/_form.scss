@@ -87,15 +87,18 @@
     }
       
     .cform__err-msg {
-      visibility: hidden;
       margin: 0;
       margin-block-start: .2rem;
       font-size: .9rem;
       // text-align: end;
       color: var( --warning-color);
+
+      &:empty {
+        display: none;
+      }
     }
   
-    
+
     .cform__field:has(:user-invalid) .cform__err-msg {
       visibility: visible;    
     }

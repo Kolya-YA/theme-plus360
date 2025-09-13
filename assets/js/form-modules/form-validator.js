@@ -1,23 +1,13 @@
-function contactFormValidator(formData) {
-  const errors = {}
-  
-  const name = formData.get('name')
-  if (!name) {
-      errors.name = 'Name is required'
-    }
-    
-  const email = formData.get('email')
-  if (!email) {
-      errors.email = 'Email is required'
-    }
-    
-    
-  const message = formData.get('message')
-  if (!message) {
-    errors.message = 'Message is required'
+function validateField(field) {
+  const errorEl = field.parentElement.querySelector(".cform__err-msg");
+
+  if (!field.validity.valid) {
+    errorEl.textContent = field.dataset.error || "This field is required";
+    return false;
   }
 
-  return errors
+  errorEl.textContent = "";
+  return true;
 }
 
-export { contactFormValidator }
+export { validateField }

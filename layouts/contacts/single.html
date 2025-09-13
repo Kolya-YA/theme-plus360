@@ -63,5 +63,8 @@
     <p>{{ .Params.add_on_notes }}</p>
   </div>
 </section>
+{{ end }}
 
+{{ define "page-scripts" }}
+  {{ partial "script-module.html" "js/form-scripts.js" }}
 {{ end }}

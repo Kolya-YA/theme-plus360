@@ -14,8 +14,8 @@
 			</div>
 		</div>
 		{{- partial "footer.html" . -}}
-		{{- partial "footer-script.html" . -}}
 	</div>
 </body>
-
+{{ partial "script-module.html" "js/common-scripts.js" }}
+{{ block "page-scripts" . }}{{ end }}
 </html>
