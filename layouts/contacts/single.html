@@ -6,118 +6,61 @@
     {{ .Content }}
   </article>
 
-  <div class="contact-form">
-    {{ with .Params.subtitle -}}
-      <h2 class="contact-form__header">{{ . }}</h2>
+  <div class="contact">
+    {{ with .Params.formTitle -}}
+    <h2 class="contact-form__header">{{ . }}</h2>
     {{- end }}
-
-    <form id="cform" class="contact-form__form cform" autocomplete="on">
+    <h3>Das Kontaktformular funktioniert leider noch nicht</h3>
+    <form id="cform" class="cform" autocomplete="on" novalidate>
       <div class="cform__field">
-        <label class="cform__label">Name
-          <input
-            class="cform__input"
-            type="text"
-            name="name"
-            required
-            maxlength="128"
-            autocomplete="name"
-            value="Test Name"
-          >
-        </label>
-        <p role="alert" class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
+        <label for="name" class="cform__label">{{ T "cf.name_label" }}</label>
+        <input id="name" type="text" name="name" required maxlength="128" autocomplete="name"
+                placeholder='{{ T "cf.name_placeholder" }}' data-error='{{ T "cf.name_error" }}' value="">
+        <span class="cform__err-msg" aria-live="polite"></span>
       </div>
-
       <div class="cform__field">
-        <label class="cform__label">Unternehmensname
-          <input
-            class="cform__input"
-            type="text"
-            name="company-name"
-            maxlength="256"
-            autocomplete="organization"
-          >
-        </label>
-        <p role="alert" class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
+        <label for="company" class="cform__label">{{ T "cf.company_label" }}</label>
+        <input id="company" type="text" name="company" maxlength="256" autocomplete="organization"
+                placeholder='{{ T "cf.company_placeholder" }}' data-error='{{ T "cf.company_error" }}'>
+        <span class="cform__err-msg" aria-live="polite"></span>
       </div>
-
       <div class="cform__field">
-        <label class="cform__label">Email
-          <input
-            class="cform__input"
-            type="email"
-            name="email"
-            required
-            maxlength="128"
-            autocomplete="email"
-          >
-        </label>
-        <p class="cform__err-msg" role="alert">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
-      </div>  
-
-      <div class="cform__field">
-        <label class="cform__label">Telefonnummer
-          <input
-            class="cform__input"
-            type="tel"
-            name="phone"
-            minlength="3"
-            maxlength="128"
-            autocomplete="tel"
-          >
-        </label>
-        <p class="cform__err-msg">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
+        <label for="email" class="cform__label">{{ T "cf.email_label" }}</label>
+        <input id="email" type="email" name="email" required maxlength="128" autocomplete="email"
+                placeholder='{{ T "cf.email_placeholder" }}' data-error='{{ T "cf.email_error" }}'>
+        <span class="cform__err-msg" aria-live="polite"></span>
       </div>
-
+      <div class="cform__field">
+        <label for="phone" class="cform__label">{{ T "cf.phone_label" }}</label>
+        <input id="phone" type="tel" name="phone" minlength="9" maxlength="32" autocomplete="tel"
+                placeholder='{{ T "cf.phone_placeholder" }}' data-error='{{ T "cf.phone_error" }}'>
+        <span class="cform__err-msg" aria-live="polite"></span>
+      </div>
       <div class="cform__field cform__field--wide">
-        <label class="cform__label">Nachricht
-          <textarea
-          class="cform__input"
-          name="message"
-          required
-          maxlength="4096"
-          cols="30" rows="10"
-          >Das Kontaktformular funktioniert leider noch nicht
-          </textarea>
-        </label>
-        <p class="cform__err-msg" role="alert">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
+        <label for="message" class="cform__label">{{ T "cf.message_label" }}</label>
+        <textarea id="message" name="message" required maxlength="4096" cols="30" rows="10"
+                  placeholder='{{ T "cf.message_placeholder" }}' data-error='{{ T "cf.message_error" }}'></textarea>
+        <span class="cform__err-msg" aria-live="polite"></span>
       </div>
-
-      <div class="cform__field">
-        <label class="cform__label">
-          <input
-            class="cform__chk-input"
-            type="checkbox"
-            name="agree-chk"
-            required
-          >
-          Ich stimme der erste Option zu.
-        </label>
-        <p class="cform__err-msg" role="alert">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
-      </div>
-
-      <div class="cform__field">
-        <label class="cform__label">
-          <input type="checkbox" name="news-chk" class="cform__chk-input">          
-          Ich stimme der zweite Option zu.
-        </label>
-        <p class="cform__err-msg" role="alert">Fehler! Bitte überprüfen Sie dieses Formularfeld</p>
-      </div>
-
       <div class="cform__field cform__field--wide">
-        <button class="cform__submit">Senden</button>
+        <input id="consent" class="cform__chk-input" type="checkbox" name="agree-chk" required>
+        <label for="consent" class="cform__label"><span>{{ (T "cf.consent_label" ("/privacy" | relLangURL)) | safeHTML }}</span></label>
+        <span class="cform__err-msg" aria-live="polite"></span>
+      </div>
+      <div class="cform__field cform__field--wide">
+        <button class="cform__submit">{{ T "cf.submit_button" }}</button>
       </div>
     </form>
-
     <dialog class="success-dialog">
       <button class="success-dialog__close" autofocus>Close</button>
-      <p>Congrats!<br>You message successfuly sent</p>
+      <p>Congrats!<br>{{ T "cf.submit_success" }}</p>
     </dialog>
     <button class="tmp_show-btn" type="button">Show</button>
+  </div>
 
-    <div class="contact-form__addon">
-      <h3>{{ .Params.addon_header }}</h3>
-      <p>{{ .Params.add_on_notes }}</p>
-    </div>
+  <div class="contact-form__addon">
+    <h3>{{ .Params.addon_header }}</h3>
+    <p>{{ .Params.add_on_notes }}</p>
   </div>
 </section>
 
