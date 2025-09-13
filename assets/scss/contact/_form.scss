@@ -1,14 +1,18 @@
 @layer contact {
   .contact {
-    max-inline-size: 700px;
+    // max-inline-size: 700px;
     margin-inline: auto;
     padding: var(--main-gap, 1rem);
-    background-color: var(--line-color);
+    background-color: var(--header-bg-color);
     border-radius: var(--border-radius, 6px);
   }
 
   .cform {
     --form-accent-color: greenyellow;
+
+    textarea {
+      height: 4lh;
+    }
   
     display: grid;
     gap: var(--main-gap, 1rem);
@@ -32,7 +36,7 @@
 
       &::after {
         content: "*";
-        color: var(--form-accent-color);
+        color: var(--button-color);
       }
     } 
   
@@ -40,31 +44,35 @@
       color: var(--text-color);
     }
     
-    input,
+    input:not([type="radio"], [type="checkbox"]),
     textarea,
     .cform__field:has([type="radio"], [type="checkbox"]) {
       padding: .7em 1em;
       border: 1px solid var(--button-color);
       border-radius: 6px;
-      font-size: inherit;
       color: var(--text-color);
 
       &:focus-visible {
        outline-color: var(--form-accent-color);
       }
       
-      &:user-valid {
+      &:user-valid,
+      &:has(:user-valid) {
         box-shadow: inset 4px 0 0 var(--form-accent-color);
       }
-      
-      &:user-invalid {
+
+      &:user-invalid,
+      &:has(:user-invalid) {
         box-shadow: inset 4px 0 0 var(--warning-color);
       }
     }
 
     .cform__field:has([type="radio"], [type="checkbox"]) {
-      display: flex;
-      gap: 1ch;
+      // display: flex;
+      display: grid;
+      grid-template-columns: auto 1fr;
+
+      column-gap: 1ch;
       position: relative;
 
       label::before {
@@ -72,6 +80,10 @@
         position: absolute;
         inset: 0;
         cursor: pointer;
+      }
+
+      .cform__err-msg {
+        grid-column: 1 / -1;
       }
     }
 
@@ -82,25 +94,13 @@
       accent-color: var(--form-accent-color);
     }
     
-    .cform__chk-input:user-invalid {
-      box-shadow: inset 5px 0 5px -3px var(--warning-color);
-    }
-      
     .cform__err-msg {
-      margin: 0;
-      margin-block-start: .2rem;
       font-size: .9rem;
-      // text-align: end;
       color: var( --warning-color);
 
       &:empty {
         display: none;
       }
-    }
-  
-
-    .cform__field:has(:user-invalid) .cform__err-msg {
-      visibility: visible;    
     }
   
     .cform__submit {
