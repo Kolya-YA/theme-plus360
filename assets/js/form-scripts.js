@@ -2,9 +2,9 @@ console.log('Form scripts loaded');
 import { validateField } from './form-modules/form-validator'
 import { sendForm } from './form-modules/form-sender'
 import './form-modules/form-messages'
-import { showDialog, showErrorsDialog } from './form-modules/form-messages';
 
 const form = document.querySelector(".cform");
+console.log(form.id)
 
 // Validation on blur
 form.querySelectorAll("input, textarea").forEach((input) => {
@@ -22,7 +22,6 @@ form.addEventListener("submit", (e) => {
   const fields = form.querySelectorAll("input, textarea");
 
   fields.forEach((field) => {
-    // console.log(`Checking ${field.name}`);
     const fieldValid = validateField(field);
 
     if (!fieldValid) {
@@ -37,21 +36,15 @@ form.addEventListener("submit", (e) => {
     setTimeout(() => {
         submitBtn.disabled = false
     }, 5000)
+
     const sendResult = sendForm(form);
     if (sendResult) {
-      console.log('Form sent successfully')
-      showDialog('.success-dialog');
+      showDialog('success-dialog');
       form.reset();
     } else {
-      showErrorsDialog(form, ['Form sending failed']);
-      console.log('Form sending failed')
+      showDialog('error-dialog');
     }
   } else {
     form.querySelector(":invalid").focus();
   }
-});
-
-// TMP debug Show success dialog
-document.querySelector('.tmp_show-btn').addEventListener('click', () => {
-    showDialog('.success-dialog');
 });

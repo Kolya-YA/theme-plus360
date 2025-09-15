@@ -49,12 +49,23 @@
       <div class="cform__field cform__field--wide">
         <button class="cform__submit">{{ T "cf.submit_button" }}</button>
       </div>
+  
+      {{- partial "common/dialog.html" (dict
+        "header" ((T "cf.submit_success_header") | safeHTML)
+        "text" ((T "cf.submit_success_msg") | safeHTML)
+        "type" "success"
+        "id" "success-dialog"
+      ) }}
+
+      {{- partial "common/dialog.html" (dict
+        "header" ((T "cf.submit_error_header") | safeHTML)
+        "text" ((T "cf.submit_error_msg") | safeHTML)
+        "type" "error"
+        "id" "error-dialog"
+      ) }}
+      <button onclick="showDialog('success-dialog')">Show Success</button>
+      <button onclick="showDialog('error-dialog')">Show Error</button>
     </form>
-    <dialog class="success-dialog">
-      <button class="close" autofocus>Close</button>
-      <p>Congrats!<br>{{ T "cf.submit_success" }}</p>
-    </dialog>
-    <button class="tmp_show-btn" type="button">Show</button>
   </div>
 
   <div class="contact-form__addon">
