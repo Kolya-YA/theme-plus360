@@ -1,7 +1,6 @@
 console.log('Form scripts loaded');
 import { validateField } from './form-modules/form-validator'
 import { sendForm } from './form-modules/form-sender'
-import './form-modules/form-messages'
 
 const form = document.querySelector(".cform");
 console.log(form.id)
