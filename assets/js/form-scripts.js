@@ -38,10 +38,12 @@ form.addEventListener("submit", (e) => {
 
     const sendResult = sendForm(form);
     if (sendResult) {
-      showDialog('success-dialog');
-      form.reset();
+      console.log('Form sent successfully');
+      // showDialog('success-dialog');
+      // form.reset();
     } else {
-      showDialog('error-dialog');
+      console.log('Form sending failed');
+      // showDialog('error-dialog');
     }
   } else {
     form.querySelector(":invalid").focus();

@@ -1,0 +1,35 @@
+{{ $bundle := "" }}
+{{ if eq . "" }}
+  {{ errorf "missing script path" }}
+{{ end }}
+{{ if eq . "js/main.js"}}
+  {{ $config := resources.Get "js/config.js" }}
+  {{ $config = $config | resources.ExecuteAsTemplate "js/config.js" nil }}
+
+  {{ $main := resources.Get . }}
+
+  {{ $bundle = slice $config $main | resources.Concat "js/bundle.js" }}
+{{ else }}
+  {{ $bundle = resources.Get . }}
+{{ end }}
+
+{{- with $bundle }}
+  {{- $opts := dict
+    "target" "es2022"
+    "format" "esm"
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "external" "")
+  -}}
+{{- with . | js.Build $opts }}
+{{- if hugo.IsDevelopment -}}
+<script type="module" src="{{ .RelPermalink }}" defer></script>
+{{- else }}
+{{- with . | fingerprint -}}
+<script type="module" src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"
+        defer></script>
+{{- end }}
+{{- end }}
+{{- end }}
+{{- else -}}
+{{ errorf "script-module: not found" }}
+{{- end }}
