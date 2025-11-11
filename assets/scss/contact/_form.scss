@@ -41,7 +41,7 @@
     } 
   
     .cform__label {
-      color: var(--text-color);
+      color: var(--fg);
     }
     
     input:not([type="radio"], [type="checkbox"]),
@@ -50,7 +50,7 @@
       padding: .7em 1em;
       border: 1px solid var(--button-color);
       border-radius: 6px;
-      color: var(--text-color);
+      color: var(--fg);
 
       &:focus-visible {
        outline-color: var(--form-accent-color);

@@ -1,9 +1,9 @@
 .icon-card {
-    background: var(--card-bg, #fff);
-    border: var(--card-border, 1px solid #e0e0e0);
-    border-radius: var(--card-radius, 12px);
+    background: var(--card);
+    border: var(1px solid var(--border));
+    border-radius: var(--radius-md);
     padding: var(--card-padding, 1.5rem);
-    box-shadow: var(--card-shadow, 0 2px 8px rgba(0, 0, 0, 0.08));
+    box-shadow: var(--shadow);
     transition: var(--card-transition, transform 0.2s ease, box-shadow 0.2s ease);
     text-align: center;
     position: relative;
@@ -16,21 +16,9 @@
         --card-text-size: 0.9rem;
     }
     
-    &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--card-accent, linear-gradient(90deg, #667eea 0%, #764ba2 100%));
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    }
-    
     &:hover {
     transform: translateY(-4px);
-    box-shadow: var(--card-shadow-hover, 0 8px 25px rgba(0, 0, 0, 0.15));
+    box-shadow: var(--shadow-raise);
 
         &::before {
         opacity: 1;
@@ -42,7 +30,7 @@
 width: var(--card-icon-size, 56px);
 height: var(--card-icon-size, 56px);
 margin: 0 auto 1.25rem;
-color: var(--card-icon-color, #4a5568);
+color: var(--primary);
 transition: transform 0.2s ease, fill 0.2s ease;
 }
   

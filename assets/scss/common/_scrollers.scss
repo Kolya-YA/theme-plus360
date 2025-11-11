@@ -1,23 +1,26 @@
 .scroller {
-    max-width: Min(calc(100vw - (var(--block-gap) * 2)), 68ch);
+    max-width: Min(calc(100vw - (var(--block-gap) * 2)), 92ch);
+    // max-width: 100%;
     margin-block: var(--block-gap);
     margin-inline: auto;
-    color: var(--footer-text-color);
+    color: var(--primary-contrast);
 
     &__list {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--block-gap);
+        gap: calc(var(--block-gap) * 1.5);
         margin: 0;
-        padding-block: calc(var(--block-gap) * 2);
+        padding-block: calc(var(--block-gap) * 1.5);
         padding-inline: 0;
         list-style: none;
 
         & > li {
-            padding: var(--block-padding);
+            padding-block: calc(var(--block-padding) * 0.5);
+            padding-inline: var(--block-padding);
             background-color: var(--clr-primary-400);
-            border-radius: var(--card-border-radius);
-            box-shadow: 0 0.5rem 1rem -0.25rem var(--clr-primary-900);
+            background-color: var(--secondary);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow);
         }
     }
 
@@ -39,8 +42,8 @@
 
     &[data-animated="true"] {        
         overflow: hidden;
-        -webkit-mask: linear-gradient(90deg, transparent, white 15%, white 85%, transparent);
-        mask: linear-gradient(transparent, white);
+        -webkit-mask: linear-gradient(90deg, transparent, var(--bg) 10%, var(--bg) 90%, transparent);
+        mask: linear-gradient(90deg, transparent, var(--bg) 10%, var(--bg) 90%, transparent);
         
         .scroller__list {
             width: max-content;

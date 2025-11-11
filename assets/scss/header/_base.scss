@@ -7,10 +7,10 @@
   
   position: relative;
   display: grid;
-  margin-block-end: var(--arc-height);
+  margin-block-end: calc(var(--arc-height) *2);
   background-color: var(--header-bg-color);
-  font-family: var(--header-font-family);
-  color: var(--text-color);
+  font-family: var(--font-sans);
+  color: var(--fg);
   
   .width-wrapper {
     padding-bottom: 0;

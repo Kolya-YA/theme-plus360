@@ -19,11 +19,13 @@
   body {
     min-height: 100vh;
     margin: 0;
-    background: var(--body-bg-color);
-    font-family: var(--common-font-family);
-    font-size: var(--common_font-size);
+    background: var(--bg);
+    font-family: var(--font-sans);
+    font-size: var(--font-size);
     line-height: 1.6;
-    color: var(--text-color);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6, p {
@@ -32,8 +34,9 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
     text-wrap: balance;
-    color: var(--text-color)
+    color: var(--fg)
   }
   
   h1, h2, h3, h4 {
@@ -80,10 +83,6 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-gap: 1px;
-  }
-  
-  .wrapper > * {
-    background-color: var(--block-bg-color);
   }
   
   .width-wrapper {

@@ -1,0 +1,149 @@
+/* Plus360 Webatelier — design tokens for theme "Neon Biz" (Raleway)
+   Usage in Hugo:
+   - Light theme is the default (no data-theme attribute needed).
+   - For dark theme set: <html data-theme="neonbiz-dark">.
+   - Component styles must only use var(--token-name), no color functions.
+*/
+
+/* ─────────────────────────────────────────────────────────── */
+/* LIGHT THEME — DEFAULT (no data-theme attribute required)   */
+/* ─────────────────────────────────────────────────────────── */
+/*
+
+   STATES & FOCUS:
+   --ring     — focus ring color
+
+   STATUS COLORS:
+   --success / --warning / --error / --info      — base tones for states
+   --success-ink / ...                           — text color on status backgrounds
+
+   ALERT TOKENS (ready-to-use in components, no color math there):
+   --alert-bg-success     — background color for success alert
+   --alert-border-success — border color for success alert
+   --alert-ink-success    — text color for success alert
+   (same pattern for warning/error/info)
+*/
+:root {
+  // SURFACE & TEXT
+  --bg: hsl(210 20% 98%); // main background
+  --fg: hsl(220 15% 15%); // primary text
+  --muted: hsl(220 10% 40%); // secondary text, descriptions
+  --subtle: hsl(220 12% 44%);// hints, captions, placeholders
+  --border: hsl(220 12% 88%); // borders for inputs, cards, subtle dividers
+  --card: hsl(0 0% 100%); // card/panel background
+  --input: hsl(220 14% 96%); // input background
+
+  // BRAND & ACCENTS
+  --primary: hsl(278 72% 32%); // main brand color (primary CTAs)
+  --primary-contrast: hsl(0 0% 100%); // text on primary background (usually white)
+  --accent: hsl(190 95% 36%); // supporting accent (links, small highlights)
+  --secondary: hsl(220 14% 22%); // neutral dark tone for secondary text/buttons
+
+  /* Focus and base state colors */
+  --ring: hsl(278 72% 28%);
+
+  --success: hsl(152 52% 36%);
+  --warning: hsl(38 95% 45%);
+  --error:   hsl(355 80% 50%);
+  --info:    hsl(200 90% 40%);
+
+  --success-ink: hsl(152 52% 30%);
+  --warning-ink: hsl(38 95% 30%);
+  --error-ink:   hsl(355 80% 30%);
+  --info-ink:    hsl(200 90% 32%);
+
+  /* Hover/active variants (precomputed, no functions in components) */
+  --primary-hover: hsl(from var(--primary) h s calc(l + 6%));
+  --primary-active: hsl(from var(--primary) h s calc(l - 8%));
+
+  --secondary-hover: hsl(from var(--secondary) h s calc(l + 6%));
+  --secondary-active: hsl(from var(--secondary) h s calc(l - 8%));
+
+  // SHADOWS
+  --shadow: 0 6px 20px hsl(from var(--bg) h s calc(l - 25) / 0.20); //default elevation shadow
+  --shadow-raise: 0 12px 32px hsl(from var(--bg) h s calc(l - 30) / 0.26); // stronger shadow on hover
+
+  /* Alert backgrounds/borders — light theme */
+  --alert-bg-success:  hsl(from var(--success) h s l / 0.14);
+  --alert-border-success: hsl(from var(--success) h s calc(l - 8%) / 0.55);
+  --alert-ink-success: var(--success-ink);
+
+  --alert-bg-warning:  hsl(from var(--warning) h s l / 0.14);
+  --alert-border-warning: hsl(from var(--warning) h s calc(l - 8%) / 0.55);
+  --alert-ink-warning: var(--warning-ink);
+
+  --alert-bg-error:    hsl(from var(--error) h s l / 0.14);
+  --alert-border-error: hsl(from var(--error) h s calc(l - 8%) / 0.55);
+  --alert-ink-error: var(--error-ink);
+
+  --alert-bg-info:     hsl(from var(--info) h s l / 0.14);
+  --alert-border-info: hsl(from var(--info) h s calc(l - 8%) / 0.55);
+  --alert-ink-info: var(--info-ink);
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* DARK THEME — OVERRIDES (when data-theme="neonbiz-dark")    */
+/* ─────────────────────────────────────────────────────────── */
+/*
+   Same token names, adapted for dark surfaces.
+   Components do not change — only the token values.
+*/
+:root[data-theme="neonbiz-dark"] {
+  /* Surface and text */
+  --bg: hsl(220 22% 10%);
+  --fg: hsl(210 15% 95%);
+  --muted: hsl(220 10% 70%);
+  --subtle: hsl(220 8% 60%);
+  --border: hsl(220 10% 22%);
+  --card: hsl(220 20% 12%);
+  --input: hsl(220 12% 16%);
+
+  /* Brand and accents */
+  --primary: hsl(278 72% 60%);
+  --primary-contrast: hsl(220 20% 10%);
+  --accent: hsl(190 95% 62%);
+  --secondary: hsl(220 10% 80%);
+
+  /* Focus and base state colors */
+  --ring: hsl(278 72% 62%);
+
+  --success: hsl(152 55% 50%);
+  --warning: hsl(38 95% 58%);
+  --error:   hsl(355 85% 65%);
+  --info:    hsl(200 92% 60%);
+
+  /* For dark theme the base status colors are already light enough.
+     Ink tokens can be adjusted if you want darker text on tinted bg. */
+  --success-ink: hsl(152 55% 24%);
+  --warning-ink: hsl(38 95% 22%);
+  --error-ink:   hsl(355 85% 24%);
+  --info-ink:    hsl(200 92% 24%);
+
+  /* Hover/active variants for dark theme (slightly different lightness) */
+  --primary-hover: hsl(from var(--primary) h s calc(l + 4%));
+  --primary-active: hsl(from var(--primary) h s calc(l - 6%));
+
+  --secondary-hover: hsl(from var(--secondary) h s calc(l + 4%));
+  --secondary-active: hsl(from var(--secondary) h s calc(l - 6%));
+
+  /* Shadows on dark background: denser so they remain visible */
+  --shadow: 0 8px 24px hsl(from var(--bg) h s calc(l - 40%) / 0.55);
+  --shadow-raise: 0 14px 36px hsl(from var(--bg) h s calc(l - 45%) / 0.70);
+
+  /* Alert backgrounds/borders — dark theme */
+  --alert-bg-success:  hsl(from var(--success) h s l / 0.12);
+  --alert-border-success: hsl(from var(--success) h s calc(l - 4%) / 0.70);
+  --alert-ink-success: var(--success-ink);
+
+  --alert-bg-warning:  hsl(from var(--warning) h s l / 0.12);
+  --alert-border-warning: hsl(from var(--warning) h s calc(l - 4%) / 0.70);
+  --alert-ink-warning: var(--warning-ink);
+
+  --alert-bg-error:    hsl(from var(--error) h s l / 0.12);
+  --alert-border-error: hsl(from var(--error) h s calc(l - 4%) / 0.70);
+  --alert-ink-error: var(--error-ink);
+
+  --alert-bg-info:     hsl(from var(--info) h s l / 0.12);
+  --alert-border-info: hsl(from var(--info) h s calc(l - 4%) / 0.70);
+  --alert-ink-info: var(--info-ink);
+}

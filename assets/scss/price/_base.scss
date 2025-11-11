@@ -1,20 +1,4 @@
 .price {
 
-  .plans-list {
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    list-style: none;
-
-    .plan-card {
-      background-color: var(--paper-color);
-      padding: var(--block-padding);
-      border-radius: var(--card-border-radius);
-      
-      &.is-popular {
-        background-color: var(--cards-color);
-      }
-    }
-  }
+  
 }

@@ -9,22 +9,18 @@ $service-item-dskt-width: 650px;
   --wraper-max-width: 85rem;
   --block-gap: 1rem;
   --block-padding: 1rem;
-  --card-border-radius: calc(1rem / 4);
 
-  --common-font-family: system-ui;
-  --header-font-family: system-ui;
-  --footer-font-family: system-ui;
-  --common_font-size: 16px;
+  --radius-sm: 8px;   /* small elements: badges, chips */
+  --radius-md: 12px;  /* inputs, buttons, small cards */
+  --radius-lg: 16px;  /* large cards, dialogs */
+
 
   --line-color: #c8c8c8;
-  --body-bg-color: #fff;
-  --block-bg-color: #fff;
-  --text-color: #3d3939;
-  --text-color-50a: #3d393980;
-  --header-color: #3d3939;
+  
   --header-bg-color: hsl(0, 0%, 92%);
   --footer-bg-color: hsl(0, 0%, 20%);
   --footer-text-color: hsl(36, 100%, 90%);
+  
   --link-hover-color: #61afb5;
   --cards-color: #dde;
   --button-color: #9d5dd1;

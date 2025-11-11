@@ -3,7 +3,7 @@
 
     details {
         border: 3px solid var(--cards-color);
-        border-radius: var(--card-border-radius);
+        border-radius: var(--radius-md);
 
         &:not(:last-child) {
             margin-bottom: var(--block-gap);
