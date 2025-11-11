@@ -1,13 +1,23 @@
 @use '../var' as *;
 
-.service-item {
+.service-list {
+  display: grid;
+  grid-gap: var(--block-gap);
+  margin-block-end: var(--block-gap);
+}
 
-  .service-item__link {
-    background-color: var(--illuminating-light);
-    margin-bottom: 1em;
-    padding: 1em;
+.service-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  transition: var(--card-transition, transform 0.2s ease, box-shadow 0.2s ease);
+  overflow: hidden;
+
+  .service-card__link {
     display: grid;
-    grid-gap: 1em;
+    // grid-gap: 1em;
+    grid-template-rows: auto 1fr auto auto;
     grid-template-areas: 
     "title"
     "img"
@@ -20,54 +30,59 @@
       grid-template-areas: 
       "img title"
       "img content"
-      "footer footer";
+      "img footer";
     }    
   }
 
   &:nth-child(even) {
   @media (min-width: $service-item-dskt-width) {
-    .service-item__link {
+    .service-card__link {
       grid-template-areas: 
       "title img"
       "content img"
-      "footer footer";
+      "footer img";
     }
   }
 }
 
-  .service-item__title {
+  .service-card__title {
     grid-area: title;
-    margin-bottom: 0;
+    margin: 0;
+    padding: var(--block-padding);
     text-align: center;
 
     @media (min-width: $service-item-dskt-width) {
       text-align: left;
+      padding-block-end: 0;
     }
   }
-  
-  .service-item__img {
+
+  .service-card__img {
     grid-area: img;
     margin: 0 auto;
     
     img {
       max-width: 100%;
-      height: auto;
-      // width: 100%;
-      
+      min-height: 100%;
     }
   }
-  
-  .service-item__content {
+
+  .service-card__content {
     grid-area: content;
-  }
-  
-  .service-item__footer {
-    grid-area: footer;
-    background-color: var(--ultimate-gray);
-    color: #222;
     margin: 0;
-    padding: .7em 0.5em;
-    text-align: right;
-    font-size: 1.1em;
+    padding: var(--block-padding);
+  }
+
+  .service-card__footer {
+    grid-area: footer;
+    width: fit-content;
+    background-color: var(--secondary);
+    color: var(--primary-contrast);
+    margin: 0;
+    padding-block: calc(var(--block-padding) * 0.5);
+    padding-inline: calc(var(--block-padding) * 2);
+    margin-inline-start: auto;
+    font-size: 1.2em;
+    line-height: 1;
   }
 }

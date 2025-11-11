@@ -2,24 +2,24 @@
 
 {{ partial "common/page-header.html" . }}
 
-<section class="service-items">
-  {{- range $k, $item := .Pages.ByWeight }}
-  <article class="service-item">
-    <a class="service-item__link" href="{{ .RelPermalink }}">
-      <h3 class="service-item__title">{{ .Title }}</h3>
-      <picture class="service-item__img">
+<section class="service-list">
+  {{- range $k, $card := .Pages.ByWeight }}
+  <article class="service-card">
+    <a class="service-card__link" href="{{ .RelPermalink }}">
+      <h3 class="service-card__title">{{ .Title }}</h3>
+      <picture class="service-card__img">
         {{- with .Resources.GetMatch "thumb" }}
         {{- $thmbwebp := .Fit "450x225 webp" }}
         {{- $thmbjpg := .Fit "450x225" }}
         <source type="image/webp" srcset="{{ $thmbwebp.RelPermalink }}">
-        <img src="{{ $thmbjpg.RelPermalink }}" alt="{{ $item.Title }}" {{/* width="{{ $thmbjpg.Width }}" */}} {{/*
+        <img src="{{ $thmbjpg.RelPermalink }}" alt="{{ $card.Title }}" {{/* width="{{ $thmbjpg.Width }}" */}} {{/*
              height="{{ $thmbjpg.Height }}" */}} loading="lazy" decoding="async">
         {{- else }}
-        <img class="service-item__img" src="https://picsum.photos/450/225.webp?random={{ $k }}" alt="Placeholder">
+        <img src="https://picsum.photos/450/225.webp?random={{ $k }}" loading="lazy" decoding="async" alt="Placeholder">
         {{- end }}
       </picture>
-      <div class="service-item__content">{{ .Summary }}</div>
-      <p class="service-item__footer">Price from € {{ .Params.price_from }},—</p>
+      <div class="service-card__content">{{ .Summary }}</div>
+      <p class="service-card__footer">{{ T "service.from" }} {{ .Params.price_from }} €</p>
     </a>
   </article>
   {{- end }}
