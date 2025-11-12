@@ -7,7 +7,7 @@
   
   position: relative;
   display: grid;
-  margin-block-end: calc(var(--arc-height) *2);
+  margin-block-end: calc(var(--arc-height) * 1.5);
   background-color: var(--header-bg-color);
   font-family: var(--font-sans);
   color: var(--fg);
