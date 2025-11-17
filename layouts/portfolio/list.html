@@ -1,13 +1,7 @@
 {{ define "main" }}
   <div class="portfolio">
     {{ partial "common/page-header.html" . }}
-    
     <ul class="portfolio__categores categories">
-      {{/*  {{if gt (len .Pages) 1 }}
-      <li class="categories__item">
-        <a class="categories__link" href="#">Alle</a>
-      </li>
-      {{ end }}  */}}
       {{ range .Pages }}
       <li class="categories__item">
         <a class="categories__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
@@ -21,11 +15,7 @@
         <ul class="pages-list">
           {{ range .Pages }}
             <li class="pages-list__item">
-            {{ if .Params.pano360 }}
-              {{ partial "pano360-card" . }}
-            {{ else }}
               {{ partial "page-card" . }}
-            {{ end }}
             </li>
           {{ end }}
         </ul>
@@ -34,15 +24,11 @@
       <ul class="pages-list">
         {{ range .Pages }}
           <li class="pages-list__item">
-          {{ if .Params.pano360 }}
-            {{ partial "pano360-card" . }}
-          {{ else }}
             {{ partial "page-card" . }}
-          {{ end }}
           </li>
         {{ end }}
       </ul>
     {{ end }}
     </ul>
-  </d>
+  </div>
 {{ end }}
