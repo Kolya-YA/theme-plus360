@@ -7,7 +7,9 @@
       <a href="{{ .Site.Params.instagramLink }}" target="_blank">Instagram</a>
       <a href="{{ .Site.Params.facebookLink }}" target="_blank">Facebook</a>
       <a href="mailto:{{ .Site.Params.email }}?subject=Question from site plus360" target="_blank">{{ .Site.Params.email }}</a>
-      <a href="tel:{{ .Site.Params.phoneLink }}">{{ .Site.Params.phone }}</a>
+      {{ with .Site.Params.phone }}
+      <a href="tel:{{ .Site.Params.phoneLink }}">{{ . }}</a>
+      {{ end }}
     </div>
     <ul class="footer__menu footer-menu">
       {{- $currentPage := . -}}

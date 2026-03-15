@@ -1,6 +1,7 @@
 {{ define "main" }}
   <div class="portfolio">
     {{ partial "common/page-header.html" . }}
+    {{ if .Params.Categories }}
     <ul class="portfolio__categores categories">
       {{ range .Pages }}
       <li class="categories__item">
@@ -8,17 +9,21 @@
       </li>
       {{ end }}
     </ul>
-    
-    {{ with .Sections }}
+    {{ end }}
+
+    {{ with .Pages }}
       {{ range . }}
-        <h3>{{ .Name }}</h3>
+        {{ with .Pages }}
         <ul class="pages-list">
-          {{ range .Pages }}
+          {{ range . }}
             <li class="pages-list__item">
               {{ partial "page-card" . }}
             </li>
           {{ end }}
         </ul>
+        {{ else }}
+        <section>{{ .Content }}</section>
+        {{ end }}
       {{ end }}
     {{ else }}
       <ul class="pages-list">
