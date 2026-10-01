@@ -8,12 +8,34 @@
       <a href="{{ .Site.Params.facebookLink }}" target="_blank">Facebook</a>
       <a href="mailto:{{ .Site.Params.email }}?subject=Question from site plus360" target="_blank">{{ .Site.Params.email }}</a>
       {{ with .Site.Params.phone }}
-      <a href="tel:{{ .Site.Params.phoneLink }}">{{ . }}</a>
+      <a href="tel:{{ $.Site.Params.phoneLink }}">{{ . }}</a>
       {{ end }}
     </div>
     <ul class="footer__menu footer-menu">
       {{- $currentPage := . -}}
+      {{- $germanSite := index (where hugo.Sites "Language.Lang" "de") 0 -}}
+      {{- $legalURLs := slice -}}
+      {{- range slice "impressum" "agb" "privacy" -}}
+        {{- $legalPage := $currentPage.Site.GetPage . -}}
+        {{- if not $legalPage -}}
+          {{- $legalPage = $germanSite.GetPage . -}}
+        {{- end -}}
+        {{- if not $legalPage -}}
+          {{- errorf "Required legal page is missing: %s" . -}}
+        {{- else -}}
+          {{- $legalURLs = $legalURLs | append $legalPage.RelPermalink -}}
+          <li>
+            <a class="footer-menu__link{{ if eq $currentPage $legalPage }} footer-menu__link--current{{ end }}"
+               href="{{ $legalPage.RelPermalink }}"
+               hreflang="{{ $legalPage.Language.Locale }}" lang="{{ $legalPage.Language.Locale }}"
+               {{ if eq $currentPage $legalPage }}aria-current="page"{{ end }}>
+              {{ $legalPage.Params.menu.footer.name | default $legalPage.Title }}
+            </a>
+          </li>
+        {{- end -}}
+      {{- end -}}
       {{ range .Site.Menus.footer }}
+      {{- if not (in $legalURLs .URL) -}}
       <li>
         <a {{ if $currentPage.IsMenuCurrent "footer" . -}}
             class="footer-menu__link footer-menu__link--current"
@@ -23,6 +45,7 @@
             >{{ .Name -}}
         </a>
       </li>
+      {{- end }}
       {{- end }}
     </ul>
   </div>

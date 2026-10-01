@@ -6,7 +6,7 @@
   {{- range $k, $card := .Pages.ByWeight }}
   <article class="service-card">
     <a class="service-card__link" href="{{ .RelPermalink }}">
-      <h3 class="service-card__title">{{ .Title }}</h3>
+      <h3 class="service-card__title">{{ .LinkTitle }}</h3>
       <picture class="service-card__img">
         {{- with .Resources.GetMatch "thumb" }}
         {{- $thmbwebp := .Fit "450x225 webp" }}
@@ -19,7 +19,7 @@
         {{- end }}
       </picture>
       <div class="service-card__content">{{ .Summary }}</div>
-      <p class="service-card__footer">{{ T "service.from" }} {{ .Params.price_from }} €</p>
+      {{ with .Params.price_from }}<p class="service-card__footer">{{ T "service.from" }} {{ . }} €</p>{{ end }}
     </a>
   </article>
   {{- end }}

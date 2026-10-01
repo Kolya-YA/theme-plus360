@@ -4,16 +4,18 @@
       <a class="logo link" href="{{ .Site.BaseURL }}">
         <span>{{ .Site.Params.titleWord }}</span>{{ .Site.Params.titleDigit }}{{ with  .Site.Params.department }} – <span>{{ . }}</span>{{ end }}
       </a>
-      <a class="header__phone phone" href="tel:{{ .Site.Params.phoneLink }}">
+      {{ with .Site.Params.phone }}
+      <a class="header__phone phone" href="tel:{{ $.Site.Params.phoneLink }}">
         <svg class="phone__icon" width="32" height="32">
-          <use href="{{ .Site.BaseURL }}images/menu-sprite.svg#phone"></use>
+          <use href="{{ $.Site.BaseURL }}images/menu-sprite.svg#phone"></use>
         </svg>
-        <span class="phone__text">{{ .Site.Params.phone }}</span>
+        <span class="phone__text">{{ . }}</span>
       </a>
+      {{ end }}
       {{ partial "lang-switcher.html" . }}
     </div>
     <nav class="header__menu menu">
-      <button class="menu__button" aria-expanded="false" aria-controls="menu__list">
+      <button class="menu__button" aria-expanded="false" aria-controls="menu__list" aria-label='{{ T "navigation_menu" }}'>
         <svg class="menu__icon" width="32" height="32" aria-hidden="true">
           <use class="menu__icon--menu" href="{{ .Site.BaseURL }}images/menu-sprite.svg#menu"></use>
           <use class="menu__icon--cross" href="{{ .Site.BaseURL }}images/menu-sprite.svg#cross"></use>

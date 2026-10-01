@@ -1,5 +1,5 @@
 import './footer-modules/top-menu'
-import './footer-modules/back-to-top' //todo
+import './footer-modules/back-to-top'
 import './footer-modules/infinite-scroller'
 import './footer-modules/universal-dialog'
 

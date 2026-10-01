@@ -1,44 +1,5 @@
+// Sass breakpoints are structural: CSS custom properties cannot be used in media queries.
 $header-top-dskt-width: 500px;
 $header-menu-dskt-width: 750px;
 $footer-dskt-width: 720px;
-
 $service-item-dskt-width: 650px;
-
-
-:root {
-  --wraper-max-width: 85rem;
-  --block-gap: 1.5rem;
-  --block-padding: 1rem;
-
-  --radius-sm: 8px;   /* small elements: badges, chips */
-  --radius-md: 12px;  /* inputs, buttons, small cards */
-  --radius-lg: 16px;  /* large cards, dialogs */
-
-
-  --line-color: #c8c8c8;
-  
-  --header-bg-color: hsl(0, 0%, 92%);
-  --footer-bg-color: hsl(0, 0%, 20%);
-  --footer-text-color: hsl(36, 100%, 90%);
-  
-  --link-hover-color: #61afb5;
-  --cards-color: #dde;
-  --button-color: #9d5dd1;
-  --button-text: #fff;
-  --paper-color: #fdf3e5;
-  --warning-color: #ff4747;
-  
-  --capture-text: #fff;
-  --capture-bgc: hsla(0, 0%, 0%, 60%);
-
-  --ultimate-gray: hsl(210, 2%, 58%);
-  --illuminating: hsl(52, 89%, 63%);
-  --illuminating-light: hsl(52, 89%, 78%);
-
-  // scrollers tmp
-  --clr-neutral-100: hsl(0, 0%, 100%);
-  --clr-primary-100: hsl(205, 15%, 58%);
-  --clr-primary-400: hsl(215, 25%, 27%);
-  --clr-primary-800: hsl(217, 33%, 17%);
-  --clr-primary-900: hsl(218, 33%, 9%);
-}

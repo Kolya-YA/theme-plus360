@@ -1,6 +1,6 @@
 {{ define "main" }}
-{{/* {{ $faqData := sort site.Data.faq "order" }} */}}
-{{ $faqData := index site.Data (printf "faq.%s" site.Language.Lang) }}
+{{/* {{ $faqData := sort hugo.Data.faq "order" }} */}}
+{{ $faqData := index hugo.Data (printf "faq.%s" site.Language.Lang) }}
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",

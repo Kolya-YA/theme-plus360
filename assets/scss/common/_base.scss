@@ -8,13 +8,14 @@
   *:before,
   *:after {
     box-sizing: border-box;
+    corner-shape: var(--corner-shape);
   
     // outline: 1px solid blue;
   }
 
   *:focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
+    outline: var(--focus-width) solid var(--focus-ring);
+    outline-offset: var(--focus-offset);
   }
   
   html {
@@ -24,13 +25,14 @@
   body {
     min-height: 100vh;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto 1fr auto;
     gap: var(--block-gap);
     margin: 0;
     background: var(--bg);
     font-family: var(--font-sans);
     font-size: var(--font-size);
-    line-height: 1.6;
+    line-height: var(--line-copy);
     color: var(--fg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

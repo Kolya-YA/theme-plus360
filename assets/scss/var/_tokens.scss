@@ -1,149 +1,138 @@
-/* Plus360 Webatelier — design tokens for theme "Neon Biz" (Raleway)
-   Usage in Hugo:
-   - Light theme is the default (no data-theme attribute needed).
-   - For dark theme set: <html data-theme="neonbiz-dark">.
-   - Component styles must only use var(--token-name), no color functions.
-*/
-
-/* ─────────────────────────────────────────────────────────── */
-/* LIGHT THEME — DEFAULT (no data-theme attribute required)   */
-/* ─────────────────────────────────────────────────────────── */
-/*
-
-   STATES & FOCUS:
-   --ring     — focus ring color
-
-   STATUS COLORS:
-   --success / --warning / --error / --info      — base tones for states
-   --success-ink / ...                           — text color on status backgrounds
-
-   ALERT TOKENS (ready-to-use in components, no color math there):
-   --alert-bg-success     — background color for success alert
-   --alert-border-success — border color for success alert
-   --alert-ink-success    — text color for success alert
-   (same pattern for warning/error/info)
-*/
+/* Plus360: quiet Bauhaus. Paper, ink, restrained brick red. */
 :root {
-  // SURFACE & TEXT
-  --bg: hsl(210 20% 98%); // main background
-  --fg: hsl(220 15% 15%); // primary text
-  --muted: hsl(220 10% 40%); // secondary text, descriptions
-  --subtle: hsl(220 12% 44%);// hints, captions, placeholders
-  --border: hsl(220 12% 88%); // borders for inputs, cards, subtle dividers
-  --card: hsl(0 0% 100%); // card/panel background
-  --input: hsl(220 14% 96%); // input background
-
-  // BRAND & ACCENTS
-  --primary: hsl(278 72% 32%); // main brand color (primary CTAs)
-  --primary-contrast: hsl(0 0% 100%); // text on primary background (usually white)
-  --accent: hsl(190 95% 36%); // supporting accent (links, small highlights)
-  --secondary: hsl(220 14% 22%); // neutral dark tone for secondary text/buttons
-
-  /* Focus and base state colors */
-  --ring: hsl(278 72% 28%);
-
-  --success: hsl(152 52% 36%);
-  --warning: hsl(38 95% 45%);
-  --error:   hsl(355 80% 50%);
-  --info:    hsl(200 90% 40%);
-
-  --success-ink: hsl(152 52% 30%);
-  --warning-ink: hsl(38 95% 30%);
-  --error-ink:   hsl(355 80% 30%);
-  --info-ink:    hsl(200 90% 32%);
-
-  /* Hover/active variants (precomputed, no functions in components) */
-  --primary-hover: hsl(from var(--primary) h s calc(l + 6%));
-  --primary-active: hsl(from var(--primary) h s calc(l - 8%));
-
-  --secondary-hover: hsl(from var(--secondary) h s calc(l + 6%));
-  --secondary-active: hsl(from var(--secondary) h s calc(l - 8%));
-
-  // SHADOWS
-  --shadow: 0 6px 20px hsl(from var(--bg) h s calc(l - 25) / 0.20); //default elevation shadow
-  --shadow-raise: 0 12px 32px hsl(from var(--bg) h s calc(l - 30) / 0.26); // stronger shadow on hover
-
-  /* Alert backgrounds/borders — light theme */
-  --alert-bg-success:  hsl(from var(--success) h s l / 0.14);
-  --alert-border-success: hsl(from var(--success) h s calc(l - 8%) / 0.55);
-  --alert-ink-success: var(--success-ink);
-
-  --alert-bg-warning:  hsl(from var(--warning) h s l / 0.14);
-  --alert-border-warning: hsl(from var(--warning) h s calc(l - 8%) / 0.55);
-  --alert-ink-warning: var(--warning-ink);
-
-  --alert-bg-error:    hsl(from var(--error) h s l / 0.14);
-  --alert-border-error: hsl(from var(--error) h s calc(l - 8%) / 0.55);
-  --alert-ink-error: var(--error-ink);
-
-  --alert-bg-info:     hsl(from var(--info) h s l / 0.14);
-  --alert-border-info: hsl(from var(--info) h s calc(l - 8%) / 0.55);
-  --alert-ink-info: var(--info-ink);
+  color-scheme: light;
+  --surface-page: #f5f2ea;
+  --surface-card: #faf8f2;
+  --surface-soft: #e9e5db;
+  --surface-hover: #e0dace;
+  --text-primary: #252522;
+  --text-secondary: #62615b;
+  --text-subtle: #75736c;
+  --border-default: #d5d0c4;
+  --border-strong: #aaa598;
+  --action: #943e30;
+  --action-hover: #7b3025;
+  --action-active: #65261e;
+  --action-contrast: #ffffff;
+  --focus-ring: #943e30;
+  --bauhaus-blue: #344f70;
+  --bauhaus-ochre: #a87e27;
+  --header-arc-height: 2.5vw;
+  --header-arc-overwidth: 12vw;
+  --overlay: rgb(25 33 28 / 35%);
+  --success: #39644c;
+  --warning: #86602a;
+  --error: #a0433e;
+  --info: #416377;
+  --bg: var(--surface-page);
+  --fg: var(--text-primary);
+  --muted: var(--text-secondary);
+  --subtle: var(--text-subtle);
+  --border: var(--border-default);
+  --card: var(--surface-card);
+  --input: var(--surface-card);
+  --primary: var(--action);
+  --primary-hover: var(--action-hover);
+  --primary-active: var(--action-active);
+  --primary-contrast: var(--action-contrast);
+  --accent: var(--action);
+  --secondary: var(--text-primary);
+  --secondary-hover: var(--action-hover);
+  --secondary-active: var(--action-active);
+  --ring: var(--focus-ring);
+  --shadow: 0 2px 8px rgb(25 33 28 / 4%);
+  --shadow-raise: 0 4px 12px rgb(25 33 28 / 7%);
+  --border-width: 1px;
+  --focus-width: 2px;
+  --focus-offset: 3px;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0.25rem;
+  --corner-shape: squircle;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --layout-width: 76rem;
+  --page-gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-gap: clamp(3rem, 6vw, 5rem);
+  --hero-gap: clamp(2rem, 4vw, 4rem);
+  --hero-columns: 1.15fr 1fr;
+  --measure-copy: 44rem;
+  --measure-hero: 19ch;
+  --control-height: 2.75rem;
+  --service-shortcut-height: 4.5rem;
+  --icon-small: 1.5rem;
+  --icon-medium: 1.75rem;
+  --transition-fast: 160ms ease;
+  --z-floating: 10;
+  --z-navigation: 100;
+  --wraper-max-width: var(--layout-width);
+  --block-gap: var(--page-gutter);
+  --block-padding: var(--space-4);
+  /* Compatibility aliases for components awaiting migration. */
+  --line-color: var(--border-default);
+  --header-bg-color: var(--surface-page);
+  --footer-bg-color: var(--surface-soft);
+  --footer-text-color: var(--text-secondary);
+  --link-hover-color: var(--action-hover);
+  --cards-color: var(--surface-soft);
+  --button-color: var(--action);
+  --button-text: var(--action-contrast);
+  --paper-color: var(--surface-card);
+  --warning-color: var(--error);
+  --capture-text: var(--action-contrast);
+  --capture-bgc: var(--overlay);
+  --ultimate-gray: var(--text-subtle);
+  --illuminating: var(--surface-hover);
+  --illuminating-light: var(--surface-soft);
+  --clr-neutral-100: var(--surface-card);
+  --clr-primary-100: var(--text-subtle);
+  --clr-primary-400: var(--action);
+  --clr-primary-800: var(--action-hover);
+  --clr-primary-900: var(--action-active);
+  --light-text-color: var(--text-secondary);
+  --card-title-color: var(--text-primary);
+  --card-text-color: var(--text-secondary);
+  --card-icon-color-hover: var(--action-hover);
 }
 
-/* ─────────────────────────────────────────────────────────── */
-/* DARK THEME — OVERRIDES (when data-theme="neonbiz-dark")    */
-/* ─────────────────────────────────────────────────────────── */
-/*
-   Same token names, adapted for dark surfaces.
-   Components do not change — only the token values.
-*/
-:root[data-theme="neonbiz-dark"] {
-  /* Surface and text */
-  --bg: hsl(220 22% 10%);
-  --fg: hsl(210 15% 95%);
-  --muted: hsl(220 10% 70%);
-  --subtle: hsl(220 8% 60%);
-  --border: hsl(220 10% 22%);
-  --card: hsl(220 20% 12%);
-  --input: hsl(220 12% 16%);
-
-  /* Brand and accents */
-  --primary: hsl(278 72% 60%);
-  --primary-contrast: hsl(220 20% 10%);
-  --accent: hsl(190 95% 62%);
-  --secondary: hsl(220 10% 80%);
-
-  /* Focus and base state colors */
-  --ring: hsl(278 72% 62%);
-
-  --success: hsl(152 55% 50%);
-  --warning: hsl(38 95% 58%);
-  --error:   hsl(355 85% 65%);
-  --info:    hsl(200 92% 60%);
-
-  /* For dark theme the base status colors are already light enough.
-     Ink tokens can be adjusted if you want darker text on tinted bg. */
-  --success-ink: hsl(152 55% 24%);
-  --warning-ink: hsl(38 95% 22%);
-  --error-ink:   hsl(355 85% 24%);
-  --info-ink:    hsl(200 92% 24%);
-
-  /* Hover/active variants for dark theme (slightly different lightness) */
-  --primary-hover: hsl(from var(--primary) h s calc(l + 4%));
-  --primary-active: hsl(from var(--primary) h s calc(l - 6%));
-
-  --secondary-hover: hsl(from var(--secondary) h s calc(l + 4%));
-  --secondary-active: hsl(from var(--secondary) h s calc(l - 6%));
-
-  /* Shadows on dark background: denser so they remain visible */
-  --shadow: 0 8px 24px hsl(from var(--bg) h s calc(l - 40%) / 0.55);
-  --shadow-raise: 0 14px 36px hsl(from var(--bg) h s calc(l - 45%) / 0.70);
-
-  /* Alert backgrounds/borders — dark theme */
-  --alert-bg-success:  hsl(from var(--success) h s l / 0.12);
-  --alert-border-success: hsl(from var(--success) h s calc(l - 4%) / 0.70);
-  --alert-ink-success: var(--success-ink);
-
-  --alert-bg-warning:  hsl(from var(--warning) h s l / 0.12);
-  --alert-border-warning: hsl(from var(--warning) h s calc(l - 4%) / 0.70);
-  --alert-ink-warning: var(--warning-ink);
-
-  --alert-bg-error:    hsl(from var(--error) h s l / 0.12);
-  --alert-border-error: hsl(from var(--error) h s calc(l - 4%) / 0.70);
-  --alert-ink-error: var(--error-ink);
-
-  --alert-bg-info:     hsl(from var(--info) h s l / 0.12);
-  --alert-border-info: hsl(from var(--info) h s calc(l - 4%) / 0.70);
-  --alert-ink-info: var(--info-ink);
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-page: #242321;
+  --surface-card: #2c2b28;
+  --surface-soft: #33312c;
+  --surface-hover: #413c35;
+  --text-primary: #f1eee5;
+  --text-secondary: #c6c1b6;
+  --text-subtle: #afa99d;
+  --border-default: #4b473f;
+  --border-strong: #80796b;
+  --action: #e3a18e;
+  --action-hover: #efb6a5;
+  --action-active: #f6cabb;
+  --action-contrast: #242321;
+  --bauhaus-blue: #a1b8d4;
+  --bauhaus-ochre: #d5b874;
+  --focus-ring: #e3a18e;
+  --success: #a8c8b0;
+  --warning: #dec391;
+  --error: #e5aaa3;
+  --info: #aec9d7;
 }
+
+:root {
+  --success-ink: var(--success);
+  --warning-ink: var(--warning);
+  --error-ink: var(--error);
+  --info-ink: var(--info);
+}
+:root { --alert-bg-success: color-mix(in srgb, var(--success) 10%, var(--surface-card)); --alert-border-success: color-mix(in srgb, var(--success) 45%, var(--border-default)); --alert-ink-success: var(--success); }
+:root { --alert-bg-warning: color-mix(in srgb, var(--warning) 10%, var(--surface-card)); --alert-border-warning: color-mix(in srgb, var(--warning) 45%, var(--border-default)); --alert-ink-warning: var(--warning); }
+:root { --alert-bg-error: color-mix(in srgb, var(--error) 10%, var(--surface-card)); --alert-border-error: color-mix(in srgb, var(--error) 45%, var(--border-default)); --alert-ink-error: var(--error); }
+:root { --alert-bg-info: color-mix(in srgb, var(--info) 10%, var(--surface-card)); --alert-border-info: color-mix(in srgb, var(--info) 45%, var(--border-default)); --alert-ink-info: var(--info); }

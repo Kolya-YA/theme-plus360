@@ -1,9 +1,42 @@
 const menuButton = document.querySelector('.menu__button')
 const menuList = document.querySelector('.menu__list')
+const root = document.documentElement
+let scrollPosition = 0
+
+function setMenuOpen(open) {
+  const wasOpen = menuButton.getAttribute('aria-expanded') === 'true'
+  if (open === wasOpen) return
+
+  menuButton.setAttribute('aria-expanded', String(open))
+  menuButton.classList.toggle('menu__button--open', open)
+  menuList.classList.toggle('menu__list--open', open)
+
+  if (open) {
+    scrollPosition = window.scrollY
+    root.style.setProperty('--menu-scroll-offset', `${-scrollPosition}px`)
+    root.classList.add('mobile-menu-open')
+  } else {
+    root.classList.remove('mobile-menu-open')
+    root.style.removeProperty('--menu-scroll-offset')
+    window.scrollTo({ top: scrollPosition, behavior: 'instant' })
+  }
+}
 
 menuButton.addEventListener('click', () => {
-  const isMenuOpen = menuButton.getAttribute('aria-expanded') === 'true' || false
-  menuButton.setAttribute('aria-expanded', !isMenuOpen)
-  menuButton.classList.toggle('menu__button--open')
-  menuList.classList.toggle('menu__list--open')
+  setMenuOpen(menuButton.getAttribute('aria-expanded') !== 'true')
+})
+
+menuList.addEventListener('click', (event) => {
+  if (event.target.closest('a')) setMenuOpen(false)
+})
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+    setMenuOpen(false)
+    menuButton.focus()
+  }
+})
+
+window.addEventListener('resize', () => {
+  if (getComputedStyle(menuButton).display === 'none') setMenuOpen(false)
 })

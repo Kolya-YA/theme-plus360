@@ -1,26 +1,29 @@
 <nav class="header__lang lang-switcher" aria-label='{{ T "langswitcher" }}'>
     <ul class="list">
-        {{ range .Site.Languages }}
+        {{ range hugo.Sites }}
+        {{ $targetHome := .Home.RelPermalink }}
+        {{ with .Language }}
         <li class="list__item">
             {{ if eq .Lang site.Language.Lang }}
             <span aria-current="page" class="current" lang="{{ .Lang }}">
-                {{ .LanguageName }}
+                {{ .Label }}
             </span>
             {{ else }}
             {{ $translated := index (where page.Translations "Lang" .Lang) 0}}
             {{ if $translated }}
             <a href="{{ $translated.RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}"
                class="lang-switcher__link">
-                {{ .LanguageName }}
+                {{ .Label }}
             </a>
             {{ else }}
-            <a href="{{ site.Home.RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}" class="link">
-                {{ .LanguageName }}
+            <a href="{{ $targetHome }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}" class="link">
+                {{ .Label }}
                 <span class="sr-only">(нет перевода)</span>
             </a>
             {{ end }}
             {{ end }}
         </li>
+        {{ end }}
         {{ end }}
     </ul>
 </nav>
