@@ -11,6 +11,7 @@
       <a href="tel:{{ $.Site.Params.phoneLink }}">{{ . }}</a>
       {{ end }}
     </div>
+    <div class="footer__bottom">
     <ul class="footer__menu footer-menu">
       {{- $currentPage := . -}}
       {{- $germanSite := index (where hugo.Sites "Language.Lang" "de") 0 -}}
@@ -48,5 +49,7 @@
       {{- end }}
       {{- end }}
     </ul>
+    {{ partial "common/theme-switcher.html" . }}
+    </div>
   </div>
 </footer>

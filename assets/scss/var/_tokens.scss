@@ -1,29 +1,31 @@
-/* Plus360: quiet Bauhaus. Paper, ink, restrained brick red. */
+/* Plus360: quiet Bauhaus. All palette values use OKLCH.
+   Light/dark palettes are explicit; theme changes never invert colors automatically. */
 :root {
   color-scheme: light;
-  --surface-page: #f5f2ea;
-  --surface-card: #faf8f2;
-  --surface-soft: #e9e5db;
-  --surface-hover: #e0dace;
-  --text-primary: #252522;
-  --text-secondary: #62615b;
-  --text-subtle: #75736c;
-  --border-default: #d5d0c4;
-  --border-strong: #aaa598;
-  --action: #943e30;
-  --action-hover: #7b3025;
-  --action-active: #65261e;
-  --action-contrast: #ffffff;
-  --focus-ring: #943e30;
-  --bauhaus-blue: #344f70;
-  --bauhaus-ochre: #a87e27;
+  --surface-page: oklch(96.1266% 0.011090 89.723);
+  --surface-card: oklch(97.9009% 0.008213 91.482);
+  --surface-soft: oklch(92.2274% 0.014071 88.688);
+  --surface-hover: oklch(88.9814% 0.017475 84.589);
+  --text-primary: oklch(26.3360% 0.005469 106.769);
+  --text-secondary: oklch(49.1600% 0.009454 99.030);
+  --text-subtle: oklch(55.5129% 0.010890 93.663);
+  --border-default: oklch(85.8261% 0.017231 88.010);
+  --border-strong: oklch(72.2392% 0.019280 89.398);
+  --action: oklch(47.6883% 0.119289 31.246);
+  --action-hover: oklch(41.3391% 0.107232 30.602);
+  --action-active: oklch(35.9521% 0.092972 29.639);
+  --action-contrast: oklch(100.0000% 0.000000 0.000);
+  --action-contrast-hover: color-mix(in oklab, var(--action-contrast) 90%, var(--action));
+  --focus-ring: oklch(47.6883% 0.119289 31.246);
+  --bauhaus-blue: oklch(42.1262% 0.064409 254.059);
+  --bauhaus-ochre: oklch(61.9066% 0.112831 81.457);
   --header-arc-height: 2.5vw;
   --header-arc-overwidth: 12vw;
-  --overlay: rgb(25 33 28 / 35%);
-  --success: #39644c;
-  --warning: #86602a;
-  --error: #a0433e;
-  --info: #416377;
+  --overlay: oklch(23.7946% 0.014979 157.626 / 35%);
+  --success: oklch(46.4375% 0.062437 158.306);
+  --warning: oklch(51.7826% 0.085906 73.316);
+  --error: oklch(50.5656% 0.124990 25.608);
+  --info: oklch(48.1889% 0.050854 235.103);
   --bg: var(--surface-page);
   --fg: var(--text-primary);
   --muted: var(--text-secondary);
@@ -40,8 +42,8 @@
   --secondary-hover: var(--action-hover);
   --secondary-active: var(--action-active);
   --ring: var(--focus-ring);
-  --shadow: 0 2px 8px rgb(25 33 28 / 4%);
-  --shadow-raise: 0 4px 12px rgb(25 33 28 / 7%);
+  --shadow: 0 2px 8px oklch(23.7946% 0.014979 157.626 / 4%);
+  --shadow-raise: 0 4px 12px oklch(23.7946% 0.014979 157.626 / 7%);
   --border-width: 1px;
   --focus-width: 2px;
   --focus-offset: 3px;
@@ -104,26 +106,26 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --surface-page: #242321;
-  --surface-card: #2c2b28;
-  --surface-soft: #33312c;
-  --surface-hover: #413c35;
-  --text-primary: #f1eee5;
-  --text-secondary: #c6c1b6;
-  --text-subtle: #afa99d;
-  --border-default: #4b473f;
-  --border-strong: #80796b;
-  --action: #e3a18e;
-  --action-hover: #efb6a5;
-  --action-active: #f6cabb;
-  --action-contrast: #242321;
-  --bauhaus-blue: #a1b8d4;
-  --bauhaus-ochre: #d5b874;
-  --focus-ring: #e3a18e;
-  --success: #a8c8b0;
-  --warning: #dec391;
-  --error: #e5aaa3;
-  --info: #aec9d7;
+  --surface-page: oklch(25.6472% 0.003981 84.584);
+  --surface-card: oklch(28.9029% 0.005548 91.568);
+  --surface-soft: oklch(31.3478% 0.009161 88.751);
+  --surface-hover: oklch(35.8927% 0.013655 76.418);
+  --text-primary: oklch(94.8966% 0.012394 91.520);
+  --text-secondary: oklch(81.1880% 0.016179 86.436);
+  --text-subtle: oklch(73.6379% 0.018285 84.593);
+  --border-default: oklch(39.9237% 0.014142 84.590);
+  --border-strong: oklch(57.8238% 0.022523 84.586);
+  --action: oklch(76.7642% 0.083688 36.715);
+  --action-hover: oklch(82.3883% 0.070805 37.255);
+  --action-active: oklch(87.3168% 0.054282 39.688);
+  --action-contrast: oklch(25.6472% 0.003981 84.584);
+  --bauhaus-blue: oklch(77.4541% 0.047502 253.467);
+  --bauhaus-ochre: oklch(79.2649% 0.093016 87.200);
+  --focus-ring: oklch(76.7642% 0.083688 36.715);
+  --success: oklch(80.2457% 0.048031 152.813);
+  --warning: oklch(82.8180% 0.072317 82.626);
+  --error: oklch(79.1117% 0.070682 26.444);
+  --info: oklch(82.0282% 0.035186 230.331);
 }
 
 :root {
@@ -132,7 +134,7 @@
   --error-ink: var(--error);
   --info-ink: var(--info);
 }
-:root { --alert-bg-success: color-mix(in srgb, var(--success) 10%, var(--surface-card)); --alert-border-success: color-mix(in srgb, var(--success) 45%, var(--border-default)); --alert-ink-success: var(--success); }
-:root { --alert-bg-warning: color-mix(in srgb, var(--warning) 10%, var(--surface-card)); --alert-border-warning: color-mix(in srgb, var(--warning) 45%, var(--border-default)); --alert-ink-warning: var(--warning); }
-:root { --alert-bg-error: color-mix(in srgb, var(--error) 10%, var(--surface-card)); --alert-border-error: color-mix(in srgb, var(--error) 45%, var(--border-default)); --alert-ink-error: var(--error); }
-:root { --alert-bg-info: color-mix(in srgb, var(--info) 10%, var(--surface-card)); --alert-border-info: color-mix(in srgb, var(--info) 45%, var(--border-default)); --alert-ink-info: var(--info); }
+:root { --alert-bg-success: color-mix(in oklab, var(--success) 10%, var(--surface-card)); --alert-border-success: color-mix(in oklab, var(--success) 45%, var(--border-default)); --alert-ink-success: var(--success); }
+:root { --alert-bg-warning: color-mix(in oklab, var(--warning) 10%, var(--surface-card)); --alert-border-warning: color-mix(in oklab, var(--warning) 45%, var(--border-default)); --alert-ink-warning: var(--warning); }
+:root { --alert-bg-error: color-mix(in oklab, var(--error) 10%, var(--surface-card)); --alert-border-error: color-mix(in oklab, var(--error) 45%, var(--border-default)); --alert-ink-error: var(--error); }
+:root { --alert-bg-info: color-mix(in oklab, var(--info) 10%, var(--surface-card)); --alert-border-info: color-mix(in oklab, var(--info) 45%, var(--border-default)); --alert-ink-info: var(--info); }

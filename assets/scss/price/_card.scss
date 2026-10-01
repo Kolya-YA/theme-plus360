@@ -11,7 +11,7 @@
     
     &:hover {
         transform: translateY(-0.2rem);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        box-shadow: var(--shadow-raise);
     }
 
     .card__header  {
@@ -65,7 +65,7 @@
       width: 100%;
       padding: 1rem;
       background-color: var(--primary-color);
-      color: white;
+      color: var(--action-contrast);
       border: none;
       border-radius: 0.5rem;
       font-size: 1rem;
@@ -75,7 +75,7 @@
       transition: background-color 0.3s;
       
       &:hover {
-        background-color: #4F46E5;
+        background-color: var(--action-hover);
       }
   
       &:focus-visible {
@@ -88,12 +88,13 @@
       background-color: var(--primary-color);
       border-color: var(--primary-color);
       position: relative;
-      color: white;
+      color: var(--action-contrast);
       
+      .card__header h3,
       .card__header p,
       .period,
       .card__features li {
-        color: rgba(255, 255, 255, 0.9);
+        color: var(--action-contrast);
       }
 
       .card__features li::before {
@@ -101,11 +102,11 @@
       }
       
       .card__button {
-        background-color: white;
+        background-color: var(--action-contrast);
         color: var(--primary-color);
         
         &:hover {
-            background-color: #F9FAFB;
+            background-color: var(--action-contrast-hover);
         }
       }
       
@@ -116,7 +117,7 @@
         left: 50%;
         transform: translateX(-50%);
         background-color: var(--secondary-color);
-        color: white;
+        color: var(--action-contrast);
         padding: 0.3rem 2rem;
         border-radius: 100vw;
         font-size: 0.875rem;

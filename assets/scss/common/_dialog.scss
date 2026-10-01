@@ -2,10 +2,10 @@
 // Provides styling for popup dialogs with different types (info, warn, error, success)
 
 .dialog {
-  background: white;
+  background: var(--surface-card);
   border: none;
   border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-raise);
   min-width: 320px;
   max-width: 500px;
   padding: 0;
@@ -13,7 +13,7 @@
   
   // Native dialog backdrop styling
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--overlay);
     backdrop-filter: blur(4px);
   }
 
@@ -23,7 +23,7 @@
     align-items: center;
     gap: 12px;
     padding: 20px 24px 16px;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-default);
     position: relative;
   }
 
@@ -46,7 +46,7 @@
     font-weight: 600;
     margin: 0;
     flex-grow: 1;
-    color: #1f2937;
+    color: var(--text-primary);
   }
 
   &__close {
@@ -62,16 +62,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #6b7280;
+    color: var(--text-secondary);
     transition: background-color 0.2s ease, color 0.2s ease;
 
     &:hover {
-      background-color: #f3f4f6;
-      color: #374151;
+      background-color: var(--surface-soft);
+      color: var(--text-primary);
     }
 
     &:focus {
-      outline: 2px solid #3b82f6;
+      outline: 2px solid var(--action);
       outline-offset: 2px;
     }
   }
@@ -89,7 +89,7 @@
   &__text {
     margin: 0;
     line-height: 1.6;
-    color: #4b5563;
+    color: var(--text-secondary);
     font-size: 0.95rem;
 
     // Handle markdown content
@@ -121,29 +121,29 @@
     min-width: 80px;
 
     &--primary {
-      background-color: #3b82f6;
-      color: white;
+      background-color: var(--action);
+      color: var(--action-contrast);
 
       &:hover {
-        background-color: #2563eb;
+        background-color: var(--action-hover);
       }
 
       &:focus {
-        outline: 2px solid #3b82f6;
+        outline: 2px solid var(--action);
         outline-offset: 2px;
       }
     }
 
     &--secondary {
-      background-color: #f3f4f6;
-      color: #374151;
+      background-color: var(--surface-soft);
+      color: var(--text-primary);
 
       &:hover {
-        background-color: #e5e7eb;
+        background-color: var(--border-default);
       }
 
       &:focus {
-        outline: 2px solid #6b7280;
+        outline: 2px solid var(--text-secondary);
         outline-offset: 2px;
       }
     }
@@ -152,40 +152,40 @@
   // Dialog Types
   &--info {
     .dialog__icon {
-      color: #3b82f6;
+      color: var(--info);
     }
   }
 
   &--warn {
     .dialog__icon {
-      color: #f59e0b;
+      color: var(--warning);
     }
     
     .dialog__header {
-      border-bottom-color: #fef3c7;
-      background-color: #fefbf3;
+      border-bottom-color: var(--alert-border-warning);
+      background-color: var(--alert-bg-warning);
     }
   }
 
   &--error {
     .dialog__icon {
-      color: #ef4444;
+      color: var(--error);
     }
     
     .dialog__header {
-      border-bottom-color: #fecaca;
-      background-color: #fef2f2;
+      border-bottom-color: var(--alert-border-error);
+      background-color: var(--alert-bg-error);
     }
   }
 
   &--success {
     .dialog__icon {
-      color: #10b981;
+      color: var(--success);
     }
     
     .dialog__header {
-      border-bottom-color: #bbf7d0;
-      background-color: #f0fdf4;
+      border-bottom-color: var(--alert-border-success);
+      background-color: var(--alert-bg-success);
     }
   }
 }

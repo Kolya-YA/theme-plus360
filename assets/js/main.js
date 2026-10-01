@@ -2,6 +2,7 @@ import './footer-modules/top-menu'
 import './footer-modules/back-to-top'
 import './footer-modules/infinite-scroller'
 import './footer-modules/universal-dialog'
+import './footer-modules/theme-switcher'
 
 
 console.log('Site loaded:', window.CONFIG.site.name);

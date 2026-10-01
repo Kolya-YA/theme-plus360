@@ -82,8 +82,9 @@
   }
 
   a {
-    // color: inherit;
-    // text-decoration: none;
+    color: var(--action);
+
+    &:hover { color: var(--action-hover); }
   }
 
   input,
