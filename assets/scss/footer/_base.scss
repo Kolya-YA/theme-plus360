@@ -31,7 +31,11 @@
     inset: auto var(--page-gutter) var(--space-8) auto;
     margin: 0;
     padding: var(--space-2);
+    width: max-content;
     max-width: calc(100vw - var(--page-gutter) * 2);
+    max-block-size: calc(100dvh - var(--space-4) * 2);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     border: var(--border-width) solid var(--border-strong);
     border-radius: var(--radius-lg);
     background: var(--surface-card);
@@ -48,7 +52,7 @@
       margin-block: var(--space-2);
     }
 
-    fieldset { border: 0; margin: 0; padding: 0; display: grid; }
+    fieldset { border: 0; margin: 0; padding: 0; min-inline-size: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
     label {
       display: flex;
       align-items: center;
@@ -59,10 +63,11 @@
       &:hover { background: var(--surface-hover); }
       &:has(:checked) { color: var(--action); }
     }
-    input { accent-color: var(--action); margin: 0; }
+    span { min-inline-size: 0; overflow-wrap: anywhere; }
+    input { accent-color: var(--action); margin: 0; flex-shrink: 0; }
   }
 }
 
 .footer { background: var(--surface-soft); border-top: var(--border-width) solid var(--border-default); padding-block: var(--space-6); font-family: var(--font-sans); color: var(--text-secondary); font-size: var(--text-sm); }
 .footer__top { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); @media (min-width: $footer-dskt-width) { flex-direction: row; justify-content: space-between; } a { padding: var(--space-2); text-decoration: none; color: inherit; &:hover { color: var(--action); } } .footer__logo { font-size: var(--text-card-title); color: var(--text-primary); span { font-weight: var(--weight-semibold); } } }
-.footer-menu { display: flex; flex-direction: row; align-items: center; flex-wrap: wrap; gap: var(--space-4); margin: 0; padding: 0; font-size: var(--text-xs); list-style: none; @media (min-width: $footer-dskt-width) { flex-direction: row; } .footer-menu__link { display: block; text-decoration: none; color: inherit; padding: var(--space-2); &:hover { color: var(--action); } } .footer-menu__link--current { text-decoration: underline; text-underline-offset: var(--space-1); } }
+.footer-menu { display: flex; flex-direction: row; align-items: center; flex-wrap: wrap; gap: var(--space-4); margin: 0; padding: 0; font-size: var(--text-sm); list-style: none; @media (min-width: $footer-dskt-width) { flex-direction: row; } .footer-menu__link { display: flex; align-items: center; min-height: var(--control-height); text-decoration: none; color: inherit; padding: var(--space-2); &:hover { color: var(--action); } } .footer-menu__link--current { text-decoration: underline; text-underline-offset: var(--space-1); } }

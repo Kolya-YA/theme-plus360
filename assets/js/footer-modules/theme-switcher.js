@@ -16,6 +16,12 @@ function applyTheme(value) {
 if (switcher) {
   applyTheme(preference)
   switcher.hidden = false
+  popover.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return
+    event.preventDefault()
+    popover.hidePopover()
+    trigger.focus({ preventScroll: true })
+  })
   switcher.addEventListener('change', (event) => {
     if (!event.target.matches('input[name="theme-preference"]')) return
     applyTheme(event.target.value)
@@ -23,8 +29,7 @@ if (switcher) {
       if (preference === 'system') localStorage.removeItem('theme')
       else localStorage.setItem('theme', preference)
     } catch { /* Theme switching still works when storage is unavailable. */ }
-    popover.hidePopover()
-    trigger.focus({ preventScroll: true })
+
   })
 }
 

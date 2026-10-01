@@ -1,17 +1,18 @@
 <footer class="footer">
   <div class="width-wrapper">
     <div class="footer__top">
-      <a class="footer__logo" href="{{ .Site.BaseURL }}">
+      <a class="footer__logo" href="{{ .Site.Home.RelPermalink }}">
         <span>{{ .Site.Params.titleWord }}</span>{{ .Site.Params.titleDigit }}
       </a>
-      <a href="{{ .Site.Params.instagramLink }}" target="_blank">Instagram</a>
-      <a href="{{ .Site.Params.facebookLink }}" target="_blank">Facebook</a>
-      <a href="mailto:{{ .Site.Params.email }}?subject=Question from site plus360" target="_blank">{{ .Site.Params.email }}</a>
+      <a href="{{ .Site.Params.instagramLink }}" target="_blank" rel="noopener">Instagram<span class="sr-only"> — {{ T "opens_new_tab" }}</span></a>
+      <a href="{{ .Site.Params.facebookLink }}" target="_blank" rel="noopener">Facebook<span class="sr-only"> — {{ T "opens_new_tab" }}</span></a>
+      <a href="mailto:{{ .Site.Params.email }}?subject=Question from site plus360">{{ .Site.Params.email }}</a>
       {{ with .Site.Params.phone }}
       <a href="tel:{{ $.Site.Params.phoneLink }}">{{ . }}</a>
       {{ end }}
     </div>
     <div class="footer__bottom">
+    <nav aria-label="{{ T "footer_navigation" }}">
     <ul class="footer__menu footer-menu">
       {{- $currentPage := . -}}
       {{- $germanSite := index (where hugo.Sites "Language.Lang" "de") 0 -}}
@@ -49,6 +50,7 @@
       {{- end }}
       {{- end }}
     </ul>
+    </nav>
     {{ partial "common/theme-switcher.html" . }}
     </div>
   </div>

@@ -1,6 +1,7 @@
 const menuButton = document.querySelector('.menu__button')
 const menuList = document.querySelector('.menu__list')
 const root = document.documentElement
+const navigation = menuButton.closest('nav')
 let scrollPosition = 0
 
 function setMenuOpen(open) {
@@ -28,6 +29,18 @@ menuButton.addEventListener('click', () => {
 
 menuList.addEventListener('click', (event) => {
   if (event.target.closest('a')) setMenuOpen(false)
+})
+
+// This is a disclosure, so Tab may leave it. Unlock the page before
+// revealing the newly focused element rather than trapping focus.
+document.addEventListener('focusin', (event) => {
+  if (menuButton.getAttribute('aria-expanded') !== 'true' || navigation.contains(event.target)) return
+  setMenuOpen(false)
+  event.target.scrollIntoView({ block: 'nearest', behavior: 'instant' })
+})
+
+document.addEventListener('pointerdown', (event) => {
+  if (!navigation.contains(event.target)) setMenuOpen(false)
 })
 
 document.addEventListener('keydown', (event) => {
