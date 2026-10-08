@@ -1,42 +1,36 @@
-.faq__list {
-    max-width: 80ch;
-    margin-bottom: var(--block-gap);
-
-    details {
-        border: 3px solid var(--cards-color);
-        border-radius: var(--radius-md);
-
-        &:not(:last-child) {
-            margin-bottom: calc(var(--block-gap) / 2);
-        }
-
-        &::details-content {
-            background-color: oklch(from var(--cards-color) l c h / .4);
-            font-size: 0.9em;
-            block-size: 0;
-            overflow-y: clip;
-            transition:
-                content-visibility .5s allow-discrete,
-                block-size .5s;
-        }
-
-        &[open]::details-content {
-            block-size: auto;
-        }
-
-        * {
-           margin: 0;
-        }
-
-        > p {
-            padding: var(--block-padding);
-        }
-
-        summary {
-            padding: calc(var(--block-padding) / 2) var(--block-padding);
-            background-color: var(--cards-color);
-            /* list-style-position: outside; */
-            /* margin-inline-start: var(--block-padding); */
-        }
-    }
+.faq { padding-block-end: var(--space-8); overflow-wrap: anywhere; }
+.faq__layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-7); @media (min-width: 1100px) { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--hero-gap); } }
+.faq__navigation {
+  align-self: start;
+  @media (min-width: 1100px) {
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    inset-block-start: var(--space-6);
+    max-block-size: calc(100dvh - var(--space-6) * 2);
+    overflow-y: auto;
+    padding-inline: var(--space-1);
+  }
+  border-block-start: var(--focus-width) solid var(--action);
+  padding-block-start: var(--space-4);
+  &-title { font-family: var(--font-accent); font-size: var(--text-card-title); font-weight: var(--weight-display); margin-block-end: var(--space-3); }
+  ul { list-style: none; margin: 0; padding: 0; }
+  a { display: flex; align-items: center; min-block-size: var(--control-height); padding-block: var(--space-2); color: var(--action); text-underline-offset: var(--space-1); font-family: var(--font-accent); font-size: var(--text-action); }
 }
+.faq__groups { @media (min-width: 1100px) { grid-column: 1; grid-row: 1; } min-inline-size: 0; display: grid; gap: var(--space-7); }
+.faq__group {
+  min-inline-size: 0;
+  h2 { font-size: var(--text-section); font-weight: var(--weight-display); line-height: var(--line-label); margin-block-end: var(--space-5); scroll-margin-block-start: var(--space-6); }
+}
+.faq__item {
+  border-block-start: var(--border-width) solid var(--border-strong);
+  &:last-child { border-block-end: var(--border-width) solid var(--border-strong); }
+  summary { display: flex; align-items: start; gap: var(--space-4); padding: var(--space-5) var(--space-4); min-block-size: var(--control-height); cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+' / '';  flex: 0 0 var(--icon-small); text-align: center; font-size: var(--text-card-title); line-height: var(--line-label); color: var(--action); }
+  &[open] summary::after { content: '−' / '';  }
+  summary:hover { background: var(--surface-soft); }
+  summary h3 { flex: 1; min-inline-size: 0; margin: 0; font-family: var(--font-accent); font-size: var(--text-card-title); font-weight: var(--weight-display); line-height: var(--line-label); }
+}
+.faq__answer { padding: 0 var(--space-4) var(--space-5); font-size: var(--text-base); line-height: var(--line-copy); color: var(--text-secondary); > :last-child { margin-block-end: 0; } a { color: var(--action); text-underline-offset: var(--space-1); } }
+.faq__contact { border-block-start: var(--focus-width) solid var(--action); padding-block-start: var(--space-5); h2 { font-size: var(--text-section); font-weight: var(--weight-display); } p { color: var(--text-secondary); } a { display: inline-flex; align-items: center; gap: var(--space-2); min-block-size: var(--control-height); color: var(--action); font-family: var(--font-accent); font-size: var(--text-action); text-underline-offset: var(--space-1); } }

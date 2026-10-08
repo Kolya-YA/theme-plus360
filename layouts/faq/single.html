@@ -1,45 +1,41 @@
 {{ define "main" }}
-{{/* {{ $faqData := sort hugo.Data.faq "order" }} */}}
-{{ $faqData := index hugo.Data (printf "faq.%s" site.Language.Lang) }}
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {{- range $i, $_ := $faqData }}
-      {{- if $i }},{{ end }}
-      {
-        "@type": "Question",
-        "name": {{ .q | markdownify }},
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "{{ .a | markdownify }}"
-        }
-      }
-      {{ end }}
-    ]
-  }
-</script>
-<section id="main" class="faq">
-  {{ partial "common/page-header.html" . }}
-
-  <div class="faq__list">
-    {{- with .Params.subtitle }}
-    <h2>{{ . }}</h2>
-    {{- end }}
-
-    {{- range (sort $faqData "order") }}
-    <details>
-      <summary>{{ .q | markdownify }}</summary>
-      <p>{{ .a | markdownify }}</p>
-    </details>
-    {{ end }}
-  </div>
-
-  {{- with .Params.faq_notes }}
-  <div class="faq__notes">
-    <p>{{ . }}</p>
-  </div>
-  {{- end }}
-</section>
+{{ $faqData := sort (index hugo.Data (printf "faq.%s" .Language.Lang)) "order" }}
+{{ $categories := slice }}
+{{ $questions := slice }}
+{{ range $faqData }}
+	{{ if not (in $categories .category) }}{{ $categories = $categories | append .category }}{{ end }}
+	{{ $questions = $questions | append (dict "@type" "Question" "name" (.q | plainify) "acceptedAnswer" (dict "@type" "Answer" "text" (string (.a | markdownify)))) }}
+{{ end }}
+  <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "@id" (printf "%s#faq" .Permalink) "url" .Permalink "name" .Title "inLanguage" .Language.Locale "mainEntity" $questions | encoding.Jsonify | safeJS }}</script>
+<div class="faq">
+	{{ partial "common/page-header.html" . }}
+	<div class="faq__layout">
+		<nav class="faq__navigation" aria-label="{{ T "faq_topics" }}">
+			<p class="faq__navigation-title">{{ T "faq_topics" }}</p>
+			<ul>
+				{{ range $index, $category := $categories }}
+					<li><a href="#faq-category-{{ $index }}">{{ $category }}</a></li>
+				{{ end }}
+			</ul>
+		</nav>
+		<div class="faq__groups">
+			{{ range $index, $category := $categories }}
+				<section class="faq__group" aria-labelledby="faq-category-{{ $index }}">
+					<h2 id="faq-category-{{ $index }}" tabindex="-1">{{ $category }}</h2>
+					{{ range where $faqData "category" $category }}
+						<details class="faq__item" id="faq-question-{{ .order }}">
+							<summary><h3>{{ .q | plainify }}</h3></summary>
+							<div class="faq__answer">{{ .a | markdownify }}</div>
+						</details>
+					{{ end }}
+				</section>
+			{{ end }}
+			<section class="faq__contact" aria-labelledby="faq-contact-title">
+				<h2 id="faq-contact-title">{{ .Params.contact_title }}</h2>
+				<p>{{ .Params.contact_text }}</p>
+				{{ with .Site.GetPage "contact" }}<a href="{{ .RelPermalink }}">{{ $.Params.contact_label }} <span aria-hidden="true">→</span></a>{{ end }}
+			</section>
+		</div>
+	</div>
+</div>
 {{ end }}
