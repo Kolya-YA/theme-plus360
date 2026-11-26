@@ -1,22 +1,40 @@
-{{- $title := print .Title " | " .Site.Title  -}}
+{{- $title := print .Title " | " .Site.Title -}}
 {{- if .IsHome }}
-  {{- $title = .Site.Title }}
+	{{- $title = .Params.seo_title | default .Site.Title }}
 {{- end -}}
 
 {{- $description := "" -}}
 {{- with .Description }}
-  {{- $description = . -}}
+	{{- $description = . -}}
 {{- else -}}
-  {{- with $.Site.Params.description -}}{{ $description = . -}}{{ end -}}
+	{{- with $.Site.Params.description -}}{{ $description = . -}}{{ end -}}
 {{- end -}}
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="canonical" href="{{ .Permalink }}">
-  <title>{{ $title }}</title>
-  <meta name="description" content="{{ $description }}">
-  {{ partial "head/head-inline-script.html" . }}
-  {{ partial "script-bundle.html" "js/main.js" }}
-  {{ partial "head/styles.html" . }}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="canonical" href="{{ .Permalink }}">
+	<title>{{ $title }}</title>
+	<meta name="description" content="{{ $description }}">
+	{{ range .AllTranslations }}
+		<link rel="alternate" hreflang="{{ .Language.Locale }}" href="{{ .Permalink }}">
+	{{ end }}
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="{{ $title }}">
+	<meta property="og:description" content="{{ $description }}">
+	<meta property="og:url" content="{{ .Permalink }}">
+	<meta property="og:site_name" content="{{ .Site.Title }}">
+	<meta property="og:locale" content="{{ replace .Language.Locale "-" "_" }}">
+	{{ range .Translations }}
+		<meta property="og:locale:alternate" content="{{ replace .Language.Locale "-" "_" }}">
+	{{ end }}
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="{{ $title }}">
+	<meta name="twitter:description" content="{{ $description }}">
+	{{ if .IsHome }}
+		{{ partial "head/home-jsonld.html" (dict "page" . "title" $title "description" $description) }}
+	{{ end }}
+	{{ partial "head/head-inline-script.html" . }}
+	{{ partial "script-bundle.html" "js/main.js" }}
+	{{ partial "head/styles.html" . }}
 </head>

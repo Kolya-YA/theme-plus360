@@ -8,7 +8,7 @@
   }
 
   .cform {
-    --form-accent-color: greenyellow;
+    --form-accent-color: var(--focus-ring);
 
     textarea {
       height: 4lh;
@@ -42,6 +42,7 @@
   
     .cform__label {
       color: var(--fg);
+      background-color: var(--input);
     }
     
     input:not([type="radio"], [type="checkbox"]),
@@ -51,6 +52,7 @@
       border: 1px solid var(--button-color);
       border-radius: 6px;
       color: var(--fg);
+      background-color: var(--input);
 
       &:focus-visible {
        outline-color: var(--form-accent-color);

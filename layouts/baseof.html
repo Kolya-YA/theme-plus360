@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ .Site.Language.Locale }}">
 {{ partial "head/head.html" . }}
 
 <body>
+	{{- partial "common/skip-link.html" . -}}
 	{{- partial "header.html" . -}}
 	<div id="content">
 		<div class="width-wrapper">
-			<main>
+			<main id="main-content" tabindex="-1">
 				{{- block "main" . }}
 				{{- end }}
 			</main>
 		</div>
 	</div>
 	{{- partial "footer.html" . -}}
+	{{- partial "common/back-to-top.html" . -}}
 </body>
 {{ block "page-scripts" . }}{{ end }}
 </html>

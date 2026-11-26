@@ -5,9 +5,8 @@
     "targetPath" "css/main.css"
     "transpiler" "dartsass"
     "vars" site.Params.styles
-    "includePaths" (slice "node_modules/bootstrap/scss")
     }}
-    {{- with . | toCSS $opts }}
+    {{- with . | css.Sass $opts }}
         {{- if hugo.IsDevelopment }}
             <link rel="stylesheet" href="{{ .RelPermalink }}">
         {{- else }}

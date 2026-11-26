@@ -1,0 +1,23 @@
+{{- $page := .page -}}
+{{- $primarySite := index (where hugo.Sites "Language.Lang" "de") 0 -}}
+{{- $rootURL := $primarySite.Home.Permalink -}}
+{{- $organizationID := printf "%s#organization" $rootURL -}}
+{{- $websiteID := printf "%s#website" $rootURL -}}
+{{- $organization := dict "@type" "Organization" "@id" $organizationID "name" (printf "%s%s" $page.Site.Params.titleWord $page.Site.Params.titleDigit) "url" $rootURL -}}
+{{- with $page.Site.Params.email -}}
+	{{- $organization = merge $organization (dict "email" .) -}}
+{{- end -}}
+{{- $profiles := slice -}}
+{{- range slice $page.Site.Params.instagramLink $page.Site.Params.facebookLink -}}
+	{{- with . -}}{{- $profiles = $profiles | append . -}}{{- end -}}
+{{- end -}}
+{{- with $profiles -}}
+	{{- $organization = merge $organization (dict "sameAs" .) -}}
+{{- end -}}
+{{- $languages := slice -}}
+{{- range hugo.Sites -}}
+	{{- $languages = $languages | append .Language.Locale -}}
+{{- end -}}
+{{- $website := dict "@type" "WebSite" "@id" $websiteID "url" $rootURL "name" $primarySite.Title "inLanguage" $languages "publisher" (dict "@id" $organizationID) -}}
+{{- $webpage := dict "@type" "WebPage" "@id" (printf "%s#webpage" $page.Permalink) "url" $page.Permalink "name" .title "description" .description "inLanguage" $page.Language.Locale "isPartOf" (dict "@id" $websiteID) "about" (dict "@id" $organizationID) -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" (slice $organization $website $webpage) | encoding.Jsonify | safeJS }}</script>

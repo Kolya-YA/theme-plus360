@@ -1,11 +1,67 @@
 {{ define "main" }}
-  <div class="home comming-soon">
-    <article>
-      <h1 class="title">{{ .Title }}</h1>
-      {{ with .Params.subtitle }}
-      <h2 class="subtitle">{{ . }}</h2>
+  {{ $services := slice }}
+  {{ with .Site.GetPage "services" }}
+    {{ $services = where .RegularPages.ByWeight "Params.homepage" true }}
+  {{ end }}
+  <div class="home">
+    {{ with resources.Get "svg/service.svg" }}{{ .Content | safeHTML }}{{ end }}
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero__content">
+        <p class="home-hero__brand">{{ .Params.hero.brand }}</p>
+        <h1 id="home-title">{{ .Params.hero.heading }}</h1>
+        <p class="home-hero__text">{{ .Params.hero.text }}</p>
+        <div class="home-hero__actions">
+          {{ with .Site.GetPage "contact" }}
+            <a class="home-hero__button" href="{{ .RelPermalink }}">{{ $.Params.hero.contact_label }}</a>
+          {{ end }}
+          <a href="#home-services">{{ .Params.hero.services_label }} <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <nav class="home-hero__services" aria-label="{{ .Params.hero.services_label }}">
+        <ul>
+          {{ range $services }}
+              <li><a href="#home-service-{{ .Params.service_id }}">
+                <svg width="24" height="24" aria-hidden="true"><use href="#{{ .Params.icon }}"></use></svg>
+                <span>{{ .LinkTitle }}</span>
+              </a></li>
+          {{ end }}
+        </ul>
+      </nav>
+    </section>
+
+    <section class="home-section" id="home-services" aria-labelledby="home-services-title">
+      <header class="home-section__header">
+        <h2 id="home-services-title">{{ .Params.services.title }}</h2>
+        <p>{{ .Params.services.intro }}</p>
+      </header>
+      <div class="home-services">
+        {{ range $services }}
+          <article class="home-service" id="home-service-{{ .Params.service_id }}">
+            <svg class="home-service__icon" width="28" height="28" aria-hidden="true"><use href="#{{ .Params.icon }}"></use></svg>
+            <h3>{{ .LinkTitle }}</h3>
+            <div class="home-service__summary">{{ .Summary }}</div>
+            <a href="{{ .RelPermalink }}">{{ T "service_details" }}<span class="sr-only"> — {{ .LinkTitle }}</span> <span aria-hidden="true">→</span></a>
+          </article>
+        {{ end }}
+      </div>
+      {{ with .Site.GetPage "services" }}
+        <a class="home-section__link" href="{{ .RelPermalink }}">{{ $.Params.services.all_label }} <span aria-hidden="true">→</span></a>
       {{ end }}
-      {{ .Content }}
-    </article>    
+    </section>
+
+    <section class="home-section" aria-labelledby="home-benefits-title">
+      <header class="home-section__header">
+        <h2 id="home-benefits-title">{{ .Params.benefits.title }}</h2>
+        <p>{{ .Params.benefits.intro }}</p>
+      </header>
+      <div class="home-benefits">
+        {{ range .Params.benefits.items }}
+          <article>
+            <h3>{{ .title }}</h3>
+            <p>{{ .text }}</p>
+          </article>
+        {{ end }}
+      </div>
+    </section>
   </div>
 {{ end }}

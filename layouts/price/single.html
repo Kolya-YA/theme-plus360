@@ -3,7 +3,7 @@
 <div class="price">
   {{ partial "common/page-header.html" . }}
 
-  {{ $pricing := site.Data.pricing }}
+  {{ $pricing := hugo.Data.pricing }}
   
   <!-- Section 1: Monthly Plans -->
   <section id="monthly-plans" class="pricing-section" aria-labelledby="monthly-plans-title">

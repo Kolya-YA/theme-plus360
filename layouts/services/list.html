@@ -3,26 +3,21 @@
 {{ partial "common/page-header.html" . }}
 
 <section class="service-list">
-  {{- range $k, $card := .Pages.ByWeight }}
-  <article class="service-card">
-    <a class="service-card__link" href="{{ .RelPermalink }}">
-      <h3 class="service-card__title">{{ .Title }}</h3>
-      <picture class="service-card__img">
-        {{- with .Resources.GetMatch "thumb" }}
-        {{- $thmbwebp := .Fit "450x225 webp" }}
-        {{- $thmbjpg := .Fit "450x225" }}
-        <source type="image/webp" srcset="{{ $thmbwebp.RelPermalink }}">
-        <img src="{{ $thmbjpg.RelPermalink }}" alt="{{ $card.Title }}" {{/* width="{{ $thmbjpg.Width }}" */}} {{/*
-             height="{{ $thmbjpg.Height }}" */}} loading="lazy" decoding="async">
-        {{- else }}
-        <img src="https://picsum.photos/450/225.webp?random={{ $k }}" loading="lazy" decoding="async" alt="Placeholder">
-        {{- end }}
-      </picture>
-      <div class="service-card__content">{{ .Summary }}</div>
-      <p class="service-card__footer">{{ T "service.from" }} {{ .Params.price_from }} €</p>
-    </a>
-  </article>
-  {{- end }}
+	{{- range .Pages.ByWeight }}
+		<article class="service-card">
+			<a class="service-card__link" href="{{ .RelPermalink }}">
+				<h2 class="service-card__title">{{ .LinkTitle }}</h2>
+				{{- with .Resources.Get "thumb.png" }}
+					{{- $thumbnail := .Resize "450x webp drawing" }}
+					{{- $thumbnail2x := .Resize "900x webp drawing" }}
+					<img class="service-card__img" src="{{ $thumbnail.RelPermalink }}" srcset="{{ $thumbnail2x.RelPermalink }} 2x"
+						width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" alt="" loading="lazy" decoding="async">
+				{{- end }}
+				<div class="service-card__content">{{ .Summary }}</div>
+				{{ with .Params.price_from }}<p class="service-card__footer">{{ T "service.from" }} {{ . }} €</p>{{ end }}
+			</a>
+		</article>
+	{{- end }}
 </section>
 
 {{- end }}

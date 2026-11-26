@@ -1,0 +1,16 @@
+<div class="theme-switcher" hidden>
+  <button class="theme-switcher__trigger" type="button" popovertarget="theme-options" aria-label="{{ T "theme_label" }}" title="{{ T "theme_label" }}">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+      <circle cx="12" cy="12" r="8" />
+      <path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none" />
+    </svg>
+  </button>
+  <div class="theme-switcher__popover" id="theme-options" popover>
+    <fieldset>
+      <legend class="sr-only">{{ T "theme_label" }}</legend>
+      {{ range slice "system" "light" "dark" }}
+      <label><input type="radio" name="theme-preference" value="{{ . }}"> <span>{{ T (printf "theme_%s" .) }}</span></label>
+      {{ end }}
+    </fieldset>
+  </div>
+</div>
