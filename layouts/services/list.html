@@ -6,7 +6,7 @@
 	{{- range .Pages.ByWeight }}
 		<article class="service-card">
 			<a class="service-card__link" href="{{ .RelPermalink }}">
-				<h3 class="service-card__title">{{ .LinkTitle }}</h3>
+				<h2 class="service-card__title">{{ .LinkTitle }}</h2>
 				{{- with .Resources.Get "thumb.png" }}
 					{{- $thumbnail := .Resize "450x webp drawing" }}
 					{{- $thumbnail2x := .Resize "900x webp drawing" }}
